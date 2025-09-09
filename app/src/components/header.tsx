@@ -4,17 +4,20 @@ import Link from "next/link";
 import { Menu } from "lucide-react";
 import { NavigationMenu, NavigationMenuItem, NavigationMenuLink, NavigationMenuList } from "./ui/navigation-menu";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "./ui/dropdown-menu";
+import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 
 export default function Header() {
+
     const nav = [
         { "slug": [""], "label": "Home" },
         { "slug": ["products"], "label": "Products" },
         { "slug": ["about"], "label": "About Us" },
         { "slug": ["contact"], "label": "Contact" }
     ];
+    const showAvatar = false;
 
     return (
-        <header className="flex flex-row-3 p-5 justify-start items-center rouned bg-white">
+        <header className="flex flex-row p-5 justify-start items-center rounded-sm bg-white">
             <Image src={logo} width={180} height={38} alt="Site logo" className="mr-10"></Image>
             <NavigationMenu className="hidden sm:block">
                 <NavigationMenuList>
@@ -27,13 +30,17 @@ export default function Header() {
                     ))}
                 </NavigationMenuList>
             </NavigationMenu>
-            <div className="ml-auto sm:hidden">
+            <div className="ml-auto flex flex-row">
+                {showAvatar ? <Avatar className="w-12 h-12">
+                    <AvatarImage src="https://github.com/shadcn.png" />
+                    <AvatarFallback></AvatarFallback>
+                </Avatar> : ''}
                 <DropdownMenu>
-                    <DropdownMenuTrigger className="rounded-md cursor-pointer data-[state=open]:bg-gray-300"><Menu width={38} height={38} /></DropdownMenuTrigger>
-                    <DropdownMenuContent className="min-w-screen mt-2 font-bold">
+                    <DropdownMenuTrigger className="sm:hidden px-2 ml-5 rounded-md cursor-pointer data-[state=open]:bg-gray-300"><Menu width={38} height={38} /></DropdownMenuTrigger>
+                    <DropdownMenuContent className="min-w-screen mt-2">
                         {nav.map((item, index) => (
-                            <DropdownMenuItem key={index} className="rouned-md data-highlighted:bg-gray-300">
-                                <Link href={`/${item.slug[0]}`} className="p-4 w-full text-xl">{item.label}</Link>
+                            <DropdownMenuItem key={index} asChild className="rouned-md data-highlighted:bg-gray-300">
+                                <Link href={`/${item.slug[0]}`} className="p-4 w-full font-bold text-xl">{item.label}</Link>
                             </DropdownMenuItem>
                         ))}
                     </DropdownMenuContent>
