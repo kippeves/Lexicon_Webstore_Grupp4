@@ -11,10 +11,10 @@ export default function Header() {
     const nav = [
         { "slug": [""], "label": "Home" },
         { "slug": ["products"], "label": "Products" },
-        { "slug": ["about"], "label": "About Us" },
+        { "slug": ["about"], "label": "About" },
         { "slug": ["contact"], "label": "Contact" }
     ];
-    const showAvatar = false;
+    const showUser = false;
 
     return (
         <header className="flex flex-row p-5 justify-start items-center rounded-sm bg-white">
@@ -30,13 +30,17 @@ export default function Header() {
                     ))}
                 </NavigationMenuList>
             </NavigationMenu>
-            <div className="ml-auto flex flex-row">
-                {showAvatar ? <Avatar className="w-12 h-12">
-                    <AvatarImage src="https://github.com/shadcn.png" />
-                    <AvatarFallback></AvatarFallback>
-                </Avatar> : ''}
+            <section className="ml-auto flex flex-row">
+                {showUser ?
+                    <button className="flex flex-row justify-center items-center cursor-pointer hover:underline hover:decoration-solid">
+                        <Avatar className="w-12 h-12">
+                            <AvatarImage />
+                            <AvatarFallback className="bg-gray-300"></AvatarFallback>
+                        </Avatar>
+                        <span className="ml-2 font-bold text-left">Log in / Register</span>
+                    </button> : ''}
                 <DropdownMenu>
-                    <DropdownMenuTrigger className="sm:hidden px-2 ml-5 rounded-md cursor-pointer data-[state=open]:bg-gray-300"><Menu width={38} height={38} /></DropdownMenuTrigger>
+                    <DropdownMenuTrigger className="sm:hidden px-2 ml-2 rounded-md cursor-pointer data-[state=open]:bg-gray-300"><Menu width={38} height={38} /></DropdownMenuTrigger>
                     <DropdownMenuContent className="min-w-screen mt-2">
                         {nav.map((item, index) => (
                             <DropdownMenuItem key={index} asChild className="rouned-md data-highlighted:bg-gray-300">
@@ -45,7 +49,7 @@ export default function Header() {
                         ))}
                     </DropdownMenuContent>
                 </DropdownMenu>
-            </div>
+            </section>
         </header>
     );
 }
