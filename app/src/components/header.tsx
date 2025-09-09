@@ -1,0 +1,55 @@
+import logo from "../../public/next.svg";
+import Image from "next/image";
+import Link from "next/link";
+import { Menu } from "lucide-react";
+import { NavigationMenu, NavigationMenuItem, NavigationMenuLink, NavigationMenuList } from "./ui/navigation-menu";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "./ui/dropdown-menu";
+import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
+
+export default function Header() {
+
+    const nav = [
+        { "slug": [""], "label": "Home" },
+        { "slug": ["products"], "label": "Products" },
+        { "slug": ["about"], "label": "About" },
+        { "slug": ["contact"], "label": "Contact" }
+    ];
+    const showUser = false;
+
+    return (
+        <header className="flex flex-row p-5 justify-start items-center rounded-sm bg-white">
+            <Image src={logo} width={180} height={38} alt="Site logo" className="mr-10"></Image>
+            <NavigationMenu className="hidden sm:block">
+                <NavigationMenuList>
+                    {nav.map((item, index) => (
+                        <NavigationMenuItem key={index}>
+                            <NavigationMenuLink asChild className="text-md hover:bg-gray-300">
+                                <Link href={`/${item.slug[0]}`} className="font-bold">{item.label}</Link>
+                            </NavigationMenuLink>
+                        </NavigationMenuItem>
+                    ))}
+                </NavigationMenuList>
+            </NavigationMenu>
+            <section className="ml-auto flex flex-row">
+                {showUser ?
+                    <button className="flex flex-row justify-center items-center cursor-pointer hover:underline hover:decoration-solid">
+                        <Avatar className="w-12 h-12">
+                            <AvatarImage />
+                            <AvatarFallback className="bg-gray-300"></AvatarFallback>
+                        </Avatar>
+                        <span className="ml-2 font-bold text-left">Log in / Register</span>
+                    </button> : ''}
+                <DropdownMenu>
+                    <DropdownMenuTrigger className="sm:hidden px-2 ml-2 rounded-md cursor-pointer data-[state=open]:bg-gray-300"><Menu width={38} height={38} /></DropdownMenuTrigger>
+                    <DropdownMenuContent className="min-w-screen mt-2">
+                        {nav.map((item, index) => (
+                            <DropdownMenuItem key={index} asChild className="rouned-md data-highlighted:bg-gray-300">
+                                <Link href={`/${item.slug[0]}`} className="p-4 w-full font-bold text-xl">{item.label}</Link>
+                            </DropdownMenuItem>
+                        ))}
+                    </DropdownMenuContent>
+                </DropdownMenu>
+            </section>
+        </header>
+    );
+}
