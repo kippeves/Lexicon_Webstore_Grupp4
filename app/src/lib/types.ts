@@ -1,8 +1,24 @@
-export interface Root {
+export interface ProductList {
   products: Product[]
   total: number
   skip: number
   limit: number
+}
+
+export interface ThinProductList {
+  products: ThinProduct[]
+  total: number
+  skip: number
+  limit: number
+}
+
+export interface ThinProduct {
+  id: number
+  title: string
+  discountPercentage: number
+  thumbnail: string
+  rating: number
+  availabilityStatus: string
 }
 
 export interface Product {
