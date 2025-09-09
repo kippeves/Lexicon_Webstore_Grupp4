@@ -15,6 +15,7 @@ export interface ThinProductList {
 export interface ThinProduct {
   id: number
   title: string
+  price: number
   discountPercentage: number
   thumbnail: string
   rating: number
