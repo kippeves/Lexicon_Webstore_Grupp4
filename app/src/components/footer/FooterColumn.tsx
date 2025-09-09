@@ -1,5 +1,5 @@
 import React from "react";
-import { content } from "./types";
+import { content } from "./footer";
 
 export function FooterColumn({
   header,
