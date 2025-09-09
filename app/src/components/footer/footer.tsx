@@ -2,7 +2,13 @@ import React from "react";
 import { FooterIcon } from "./FooterIcon";
 import { FooterColumn } from "./FooterColumn";
 import ContentGrid from "../content-grid";
-import { content, linkIcon } from "./types";
+
+export type linkIcon = {
+  name: string;
+  width: number;
+  height: number;
+};
+export type content = { slug: string; name: string };
 
 function Footer() {
   const categories: content[] = [
