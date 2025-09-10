@@ -1,6 +1,6 @@
 import Image from "next/image";
 import React from "react";
-import { linkIcon } from "./footer";
+import { linkIcon } from "../footer";
 
 export function FooterIcon({ icon }: { icon: linkIcon }) {
   return (
