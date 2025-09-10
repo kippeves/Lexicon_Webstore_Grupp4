@@ -41,11 +41,11 @@ export default function AboutPage() {
           </p>
         </div>
         <div className="bg-[var(--primary-green)] border rounded-lg shadow p-6 flex flex-col items-center">
-            <svg className="w-12 h-12 text-primary mb-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-              <rect x="5" y="11" width="14" height="12" rx="2" />
-              <path d="M7 11V7a5 5 0 0110 0v4" />
-              <circle cx="12" cy="17" r="1.5" />
-            </svg>
+          <svg className="w-12 h-12 text-primary mb-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+            <rect x="5" y="11" width="14" height="12" rx="2" />
+            <path d="M7 11V7a5 5 0 0110 0v4" />
+            <circle cx="12" cy="17" r="1.5" />
+          </svg>
           <h3 className="text-xl font-bold mb-2">Our Values</h3>
           <p className="text-center">
             Sed eu ornare lacus. Donec eleifend maximus suscipit. Nam placerat pulvinar mauris et condimentum. Nam condimentum, eros sit amet pretium vehicula.
@@ -53,7 +53,8 @@ export default function AboutPage() {
         </div>
         <div className="bg-[var(--primary-green)] border rounded-lg shadow p-6 flex flex-col items-center">
           <svg className="w-12 h-12 text-primary mb-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-            <path d="M12 20l9-5-9-5-9 5 9 5zm0-10V4m0 0L3 9m9-5l9 5" />
+            <path d="M5 13l4 4L19 7" strokeLinecap="round" strokeLinejoin="round" />
+            <circle cx="12" cy="12" r="10" />
           </svg>
           <h3 className="text-xl font-bold mb-2">Our Promise</h3>
           <p className="text-center">
