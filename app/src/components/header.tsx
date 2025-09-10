@@ -26,7 +26,7 @@ export default function Header() {
   const showUser = false;
 
   return (
-    <header className="flex flex-row p-5 justify-start items-center rounded-sm bg-white">
+    <header className="flex flex-row p-5 justify-start items-center rounded-sm bg-white h-fit">
       <Image
         src={logo}
         width={180}
