@@ -23,9 +23,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${interSans.className} antialiased`}>
-        <Header />
-        <main>
-          <ContentGrid>
+        <ContentGrid>
+          <Header />
+          <main>
             {children}
           </main>
           <Footer />
