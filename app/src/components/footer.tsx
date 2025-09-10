@@ -63,7 +63,7 @@ function Footer() {
     { name: "Klarna", width: 72, height: 16 },
   ];
   return (
-    <footer className="flex flex-col grow full-width border-t-1">
+    <footer className="flex flex-col grow full-width border-t-1 bg-white">
       <div className="flex-row border-b-1">
         <div className="flex py-6 px-4 justify-evenly">
           <div className="flex flex-col gap-5 py-4 grow">
