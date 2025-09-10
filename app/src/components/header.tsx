@@ -5,7 +5,6 @@ import { Menu } from "lucide-react";
 import {
   NavigationMenu,
   NavigationMenuItem,
-  NavigationMenuLink,
   NavigationMenuList,
 } from "./ui/navigation-menu";
 import {
@@ -15,6 +14,7 @@ import {
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
+import { HeaderLink } from "./header/headerlink";
 
 export default function Header() {
   const nav = [
@@ -33,17 +33,12 @@ export default function Header() {
         height={38}
         alt="Site logo"
         className="mr-10"
-      />
-      <h1 className="sr-only">Grupp 4</h1>
+      ></Image>
       <NavigationMenu className="hidden sm:block">
         <NavigationMenuList>
           {nav.map((item, index) => (
             <NavigationMenuItem key={index}>
-              <NavigationMenuLink asChild className="text-md hover:bg-gray-300">
-                <Link href={`/${item.slug[0]}`} className="font-bold">
-                  {item.label}
-                </Link>
-              </NavigationMenuLink>
+              <HeaderLink href={`/${item.slug[0]}`}>{item.label}</HeaderLink>
             </NavigationMenuItem>
           ))}
         </NavigationMenuList>
@@ -85,3 +80,4 @@ export default function Header() {
     </header>
   );
 }
+
