@@ -30,14 +30,14 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <Header />
-        <main>
-          <ContentGrid>
+        <ContentGrid>
+          <Header />
+          <main>
             {children}
-            <Footer />
-          </ContentGrid>
-        </main>
+          </main>
+          <Footer />
+        </ContentGrid>
       </body>
-    </html>
+    </html >
   );
 }
