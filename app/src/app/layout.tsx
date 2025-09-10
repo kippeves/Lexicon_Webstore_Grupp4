@@ -23,14 +23,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${interSans.className} antialiased`}>
-        <main>
         <Header />
+        <main>
           <ContentGrid>
             {children}
-            <Footer />
-          </ContentGrid>
-        </main>
+          </main>
+          <Footer />
+        </ContentGrid>
       </body>
-    </html>
+    </html >
   );
 }
