@@ -1,7 +1,7 @@
 import { ThinProduct } from "@/lib/types";
 import ProductCard from "./product-card";
 
-export default function ProductsGrid({ products, title }: { products: ThinProduct[], title?: string }
+export default function ProductsGrid({ products, title, emptyText = "Inga produkter hittades." }: { products: ThinProduct[], title?: string, emptyText?: string }
 ) {
     return (
         <div>
@@ -13,6 +13,10 @@ export default function ProductsGrid({ products, title }: { products: ThinProduc
                     </li>
                 ))}
             </ul>
+            {products.length <= 0 ?
+                <p className="text-center p-4">{emptyText}</p>
+                : ''
+            }
         </div>
     );
 }
