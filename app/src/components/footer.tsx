@@ -1,7 +1,6 @@
 import React from "react";
-import { FooterIcon } from "./FooterIcon";
-import { FooterColumn } from "./FooterColumn";
-import ContentGrid from "../content-grid";
+import { FooterIcon } from "./footer/footer-icon";
+import { FooterColumn } from "./footer/footer-column";
 
 export type linkIcon = {
   name: string;
