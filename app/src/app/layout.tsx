@@ -1,16 +1,13 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
 import ContentGrid from "@/components/content-grid";
+import Header from "@/components/header";
+import Footer from "@/components/footer";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const interSans = Inter({
   subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -25,13 +22,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        <main>
-          <ContentGrid>{children}</ContentGrid>
-        </main>
+      <body className={`${interSans.className} antialiased`}>
+        <ContentGrid>
+          <Header />
+          <main>
+            {children}
+          </main>
+          <Footer />
+        </ContentGrid>
       </body>
-    </html>
+    </html >
   );
 }

@@ -141,6 +141,10 @@
   grid-template-columns: var(--grid-cols-content);
 }
 
+body > .content-grid {
+  min-height: 100vh;
+}
+
 .content-grid > :not(.breakout, .full-width),
 .full-width > :not(.breakout, .full-width) {
   grid-column: content;
