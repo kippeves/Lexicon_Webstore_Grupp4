@@ -3,7 +3,6 @@ import Image from "next/image";
 import ProductPrice from "./product-price";
 
 export default function ProductCard({ product }: { product: ThinProduct }) {
-    //TODO: Replace price with price component when available
     return (
         <article className="border rounded-xs p-4 shadow flex flex-col justify-start">
             <div className="flex flex-col items-center mb-2">
