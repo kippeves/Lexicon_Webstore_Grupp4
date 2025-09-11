@@ -4,10 +4,10 @@ import { getProducts } from "@/lib/data/products";
 import { Suspense } from "react";
 
 export default async function Home() {
-  const products = getProducts({ limit: 8 });
+  const products = getProducts({ limit: 10 });
 
   return (
-    <div className="flex flex-wrap gap-2">
+    <div className="flex flex-wrap gap-4">
       <div className="rounded p-4 bg-white">
         <HeroSection />
       </div>
