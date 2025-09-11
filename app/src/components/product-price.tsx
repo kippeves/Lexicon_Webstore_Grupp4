@@ -4,8 +4,8 @@ export default function ProductPrice({ price, discountPercentage }: { price: num
         : price;
 
     return (
-        <div className="flex flex-row gap-2 items-center items-baseline">
-            <p className={`text-lg font-bold${discountPercentage ? " text-red-600" : ""}`}>${discountedPrice}</p>
+        <div className="flex flex-row gap-2 items-center items-baseline justify-start mt-2">
+            <p className={`text-lg font-bold ${discountPercentage ? " text-red-600" : ""}`}>${discountedPrice}</p>
             {discountPercentage && (
                 <p className="text-sm text-gray-500 line-through">${price}</p>
             )}
