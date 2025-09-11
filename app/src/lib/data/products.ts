@@ -11,6 +11,23 @@ export const getProduct = async (id: number): Promise<Product> => {
     }
 }
 
+export const searchByNameList = async (name: string): Promise<ThinProductList> => {
+    try {
+        const response = await fetch(`${baseURI}search?q=${name}&select=title,price,discountPercentage,thumbnail,rating,availabilityStatus`);
+        return await response.json() as ThinProductList;
+    } catch (e) {
+        throw (e);
+    }
+}
+
+export const searchByNameFull = async (name: string): Promise<ProductList> => {
+    try {
+        const response = await fetch(`${baseURI}search?q=${name}`);
+        return await response.json() as ProductList;
+    } catch (e) {
+        throw (e);
+    }
+}
 
 
 export const getProducts = async ({ limit }: { limit?: number }): Promise<ThinProduct[]> => {
