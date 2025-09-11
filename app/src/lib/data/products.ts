@@ -26,14 +26,17 @@ export const getProducts = async ({ limit }: { limit?: number }): Promise<ThinPr
                     const request = await fetch(uri);
                     const list = await request.json() as ThinProductList;
                     resolve(list);
-                }, 100);
+                }, 250);
             });
         });
 
         const data = await Promise.all(tasks);
-        return data.reduce((accumulator, currentValue) => {
-            return { ...accumulator, products: accumulator.products.concat(currentValue.products) }
+        const returnItems = data.reduce((accumulator, currentValue) => {
+            return { ...accumulator, products: accumulator?.products?.concat(currentValue.products) }
         }).products;
+
+        return limit ? returnItems.slice(0, limit) : returnItems;
+
     } catch (e) {
         throw (e);
     }
