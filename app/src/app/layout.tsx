@@ -4,6 +4,7 @@ import "./globals.css";
 import ContentGrid from "@/components/content-grid";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
+import SearchBar from "@/components/search-bar";
 
 const interSans = Inter({
   subsets: ["latin"],
@@ -23,9 +24,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${interSans.className} antialiased bg-[#e2e4eb]`}>
-        <ContentGrid className={"min-h-dvh grid-rows-[auto_1fr_auto] gap-4"}>
+        <ContentGrid className={"min-h-dvh grid-rows-[auto_auto_1fr_auto]"}>
           <Header />
-          <main>{children}</main>
+          <SearchBar />
+          <main className="my-4">{children}</main>
           <Footer />
         </ContentGrid>
       </body>
