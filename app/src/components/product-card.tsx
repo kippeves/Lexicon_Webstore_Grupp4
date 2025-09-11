@@ -1,10 +1,11 @@
 import { ThinProduct } from "@/lib/types";
 import Image from "next/image";
+import ProductPrice from "./product-price";
 
 export default function ProductCard({ product }: { product: ThinProduct }) {
     //TODO: Replace price with price component when available
     return (
-        <div className="border rounded-xs p-4 shadow">
+        <article className="border rounded-xs p-4 shadow">
             <div className="flex flex-col items-center mb-2">
                 <Image
                     src={product.thumbnail}
@@ -20,7 +21,9 @@ export default function ProductCard({ product }: { product: ThinProduct }) {
             <h2 className="text-lg font-semibold">{product.title}</h2>
 
             <div>
-                <p className="text-lg font-bold mt-2">${product.price}</p>
+                <p className="text-lg font-bold mt-2">
+                    <ProductPrice price={product.price} discountPercentage={product.discountPercentage} />
+                </p>
             </div>
 
             <p className="text-sm text-gray-500 flex items-center gap-2">
@@ -44,6 +47,6 @@ export default function ProductCard({ product }: { product: ThinProduct }) {
                     </span>
                 )}
             </p>
-        </div>
+        </article>
     )
 }
