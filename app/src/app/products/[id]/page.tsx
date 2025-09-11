@@ -1,7 +1,35 @@
 import React from "react";
+import { getProduct } from "@/lib/data/products";
+import Image from "next/image";
+import ProductPrice from "@/components/product-price";
+import StockStatus from "@/components/stock-status";
 
-function ProductsDetailPage() {
-  return <div>ProductsDetailPage</div>;
+export default async function ProductsDetailPage({ searchParams }: {searchParams: Promise<{ query?: string }>}) {
+  const { query } = await searchParams;
+  const productId = query ? Number(query) : undefined;
+
+
+  if (typeof productId !== "number" || isNaN(productId)) {
+    return <div>Invalid product ID</div>;
+  }
+  const product = await getProduct(productId);
+
+  return(
+    <div className="flex flex-row gap-4 p-4">
+      <Image src={product.images[0]} alt={product.title} width={200} height={200} />
+      <div className="flex flex-col">
+        <h1 className="text-2xl font-bold mb-2">{product.title}</h1>
+        <p className="text-lg font-semibold mb-2">Rating: {product.rating} ⭐</p>
+        <ProductPrice price={product.price} discountPercentage={product.discountPercentage} />
+        <p className="text-lg font-semibold mb-2">Description: {product.description}</p>
+        <p className="text-lg font-semibold mb-2">Category: {product.category}</p>
+        <p className="text-lg font-semibold mb-2">Brand: {product.brand}</p>
+        <StockStatus availabilityStatus={product.availabilityStatus} />
+      </div>
+      <div className="flex flex-col ml-auto justify-between">
+        <button className="bg-blue-500 text-white px-4 py-2 rounded mb-2 hover:bg-blue-600">Add to Cart</button>
+        <button className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">Buy Now</button>
+      </div>
+    </div>
+  );
 }
-
-export default ProductsDetailPage;
