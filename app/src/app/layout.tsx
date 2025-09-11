@@ -22,15 +22,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${interSans.className} antialiased`}>
-        <ContentGrid>
+      <body className={`${interSans.className} antialiased bg-[#e2e4eb]`}>
+        <ContentGrid className={"min-h-dvh grid-rows-[auto_1fr_auto] gap-4"}>
           <Header />
-          <main>
-            {children}
-          </main>
+          <main className="rounded p-4 bg-white">{children}</main>
           <Footer />
         </ContentGrid>
       </body>
-    </html >
+    </html>
   );
 }

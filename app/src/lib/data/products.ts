@@ -13,14 +13,15 @@ export const getProduct = async (id: number): Promise<Product> => {
 
 
 
-export const getProducts = async (): Promise<ThinProduct[]> => {
+export const getProducts = async ({ limit }: { limit?: number }): Promise<ThinProduct[]> => {
     const filter = '?select=title,price,discountPercentage,thumbnail,rating,availabilityStatus';
+    const limitFilter = limit !== undefined ? `${filter}&limit=${Math.ceil(limit / 4)}` : filter;
     const categories = ['smartphones', 'tablets', 'mobile-accessories', 'laptops'];
-    const filterURIS = categories.map(categoryName => `${baseURI}category/${categoryName}${filter}`)
+    const filterURIS = categories.map(categoryName => `${baseURI}category/${categoryName}${limitFilter}`)
 
     try {
         const tasks = filterURIS.map(async uri => {
-            return new Promise<ThinProductList>((resolve, reject) => {
+            return new Promise<ThinProductList>((resolve) => {
                 setTimeout(async () => {
                     const request = await fetch(uri);
                     const list = await request.json() as ThinProductList;
