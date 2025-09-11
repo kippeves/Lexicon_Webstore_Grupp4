@@ -7,11 +7,15 @@ export default async function Home() {
   const products = getProducts({ limit: 8 });
 
   return (
-    <>
-      <HeroSection />
-      <Suspense>
-        <ProductsGrid title="Featured Products" productsTask={products} />
-      </Suspense>
-    </>
+    <div className="flex flex-wrap gap-2">
+      <div className="rounded p-4 bg-white">
+        <HeroSection />
+      </div>
+      <div className="rounded p-4 bg-white grow">
+        <Suspense>
+          <ProductsGrid title="Featured Products" productsTask={products} />
+        </Suspense>
+      </div>
+    </div>
   );
 }
