@@ -27,7 +27,7 @@ export default function RootLayout({
         <ContentGrid className={"min-h-dvh grid-rows-[auto_auto_1fr_auto]"}>
           <Header />
           <SearchBar />
-          <main className="my-4">{children}</main>
+          <main className="flex flex-col gap-4 my-4">{children}</main>
           <Footer />
         </ContentGrid>
       </body>
