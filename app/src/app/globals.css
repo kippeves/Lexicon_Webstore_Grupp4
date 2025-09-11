@@ -129,16 +129,9 @@
   }
 }
 
-
 @utility content-grid {
   display: grid;
   grid-template-columns: var(--grid-cols-content);
-}
-
-body>.content-grid {
-  min-height: 100dvh;
-  grid-template-rows: auto 1fr auto;
-  gap: 1rem;
 }
 
 .content-grid> :not(.breakout, .full-width),
