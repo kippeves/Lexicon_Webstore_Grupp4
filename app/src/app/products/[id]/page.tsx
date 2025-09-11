@@ -22,7 +22,6 @@ export default async function ProductPage(props: { params: Promise<{ [key: strin
         <p className="text-lg font-semibold mb-2">Rating: {product.rating} ⭐</p>
         <ProductPrice price={product.price} discountPercentage={product.discountPercentage} />
         <p className="text-md  mb-2">Description: {product.description}</p>
-        <p className="text-lg font-semibold mb-2">Category: {product.category}</p>
         <p className="text-lg font-semibold mb-2">Brand: {product.brand}</p>
         <StockStatus availabilityStatus={product.availabilityStatus} />
 
@@ -30,6 +29,10 @@ export default async function ProductPage(props: { params: Promise<{ [key: strin
           <button className="bg-blue-500 text-white px-4 py-2 rounded mb-2 hover:bg-blue-600">Add to Cart</button>
           <button className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">Buy Now</button>
         </div>
+
+        <p className="text-sm font-semibold">SKU: <span className="text-sm text-gray-500">{product.sku}</span></p>
+        <p className="text-sm font-semibold">CATEGORY: <span className="text-sm text-gray-500">{product.category}</span></p>
+        <p className="text-sm font-semibold">TAGS: <span className="text-sm text-gray-500">{product.tags.join(", ")}</span></p>
       </div>
 
     </div>
