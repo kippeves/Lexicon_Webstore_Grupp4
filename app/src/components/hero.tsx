@@ -23,7 +23,7 @@ export default async function HeroSection() {
   const products = await Promise.all(PRODUCT_IDS.map((p) => getProduct(p.id)));
 
   return (
-    <div className="grid grid-cols-6 grid-rows-6 gap-4 min-h-[32rem]">
+    <section className="grid grid-cols-6 grid-rows-6 gap-4 min-h-[32rem]">
       {products.map((product, index) => {
         const config = PRODUCT_IDS[index];
         if (!product) return null;
@@ -41,6 +41,6 @@ export default async function HeroSection() {
 
         return <HeroProductCard key={product.id} {...props} />;
       })}
-    </div>
+    </section>
   );
 }
