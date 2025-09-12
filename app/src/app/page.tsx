@@ -5,9 +5,8 @@ import { Suspense } from "react";
 
 export default async function Home() {
   const products = getProducts({ limit: 10 });
-
   return (
-    <div className="flex flex-wrap gap-4">
+    <>
       <div className="rounded p-4 bg-white">
         <HeroSection />
       </div>
@@ -16,6 +15,6 @@ export default async function Home() {
           <ProductsGrid title="Featured Products" productsTask={products} />
         </Suspense>
       </div>
-    </div>
+    </>
   );
 }
