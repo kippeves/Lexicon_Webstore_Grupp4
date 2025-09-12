@@ -7,10 +7,10 @@ export default async function Home() {
   const products = getProducts({ limit: 10 });
   return (
     <>
-      <div className="rounded p-4 bg-white">
+      <div className="rounded p-0 sm:p-6 bg-transparent sm:bg-white">
         <HeroSection />
       </div>
-      <div className="rounded p-4 bg-white grow">
+      <div className="rounded p-6 bg-white grow">
         <Suspense>
           <ProductsGrid title="Featured Products" productsTask={products} />
         </Suspense>
