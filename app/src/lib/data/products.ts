@@ -1,4 +1,4 @@
-import { Product, ProductList, ThinProduct, ThinProductList } from "../types";
+import { Product, ThinProduct, ThinProductList } from "../types";
 const baseURI = 'https://dummyjson.com/products/';
 
 
@@ -11,7 +11,17 @@ export const getProduct = async (id: number): Promise<Product> => {
     }
 }
 
-
+export const searchByName = async ({ name, page }: { name: string, page?: { number: number, perPage: number } }): Promise<ThinProductList> => {
+    try {
+        let URI = `${baseURI}search?q=${name}&select=title,price,discountPercentage,thumbnail,rating,availabilityStatus`
+        if (page)
+            URI += `&skip=${page.perPage * (page.number - 1)}&limit=${page.perPage}`;
+        const response = await fetch(URI);
+        return await response.json() as ThinProductList;
+    } catch (e) {
+        throw (e);
+    }
+}
 
 export const getProducts = async ({ limit }: { limit?: number }): Promise<ThinProduct[]> => {
     const filter = '?select=title,price,discountPercentage,thumbnail,rating,availabilityStatus';

@@ -5,7 +5,6 @@ import { Suspense } from "react";
 
 export default async function Home() {
   const products = getProducts({ limit: 10 });
-
   return (
     <>
       <div className="rounded p-4 bg-white">
