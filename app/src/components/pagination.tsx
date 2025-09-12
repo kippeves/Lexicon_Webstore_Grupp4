@@ -33,7 +33,7 @@ export function PaginationFilter({ page = 1, limit = limitList[0], total = 0 }: 
     }
 
     return (
-        <div className="flex flex-row justify-start items-center gap-8 w-full p-4 border border-gray mb-4 rounded-xs shadow">
+        <div className="flex flex-row justify-start items-center gap-8 w-full p-4 border border-gray rounded-xs shadow">
             <p><strong>{`${Math.min(start, total)} - ${Math.min(page * limit, total)}`}</strong><span>{` of ${total} results`}</span></p>
             <div className="flex flex-row items-center">
                 <label htmlFor="pagination-limit">Show items&nbsp;</label>
@@ -93,7 +93,7 @@ export function PaginationPaging({ page = 1, limit = limitList[0], total = 0 }: 
     }
 
     return (
-        <div className="flex flex-row justify-center items-center w-full p-4 border border-gray mt-4 rounded-xs shadow gap-2">
+        <div className="flex flex-row justify-center items-center w-full p-4 border border-gray rounded-xs shadow gap-2">
             <Pagination>
                 <PaginationContent>
                     {(total > 0 && page > 1) ?

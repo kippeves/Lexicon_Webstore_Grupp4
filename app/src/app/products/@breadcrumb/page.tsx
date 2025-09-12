@@ -6,16 +6,8 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
-import { Fragment } from "react";
 
 export default function BreadcrumbSlot() {
-  const links = [
-    {
-      href: "/",
-      title: "Home",
-    },
-    { href: "/products", title: "Products" },
-  ];
   return (
     <div className="bg-white p-4 rounded">
       <Breadcrumb>
