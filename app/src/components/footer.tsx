@@ -65,12 +65,12 @@ function Footer() {
   return (
     <footer className="flex flex-col grow full-width border-t-1 bg-white">
       <div className="flex-row border-b-1">
-        <div className="flex py-6 px-4 justify-evenly">
+        <div className="flex flex-col py-12 px-4 justify-evenly sm:flex-row">
           <div className="flex flex-col gap-5 py-4 grow">
-            <h2 className="text-2xl font-bold uppercase">Grupp 4 Webstore</h2>
+            <h2 className="text-2xl font-bold uppercase">Group 4 Webstore</h2>
             <p className="flex flex-col">
               <span className="uppercase">Hotline 24/7</span>
-              <span className="text-3xl font-bold text-green-800">
+              <span className="text-xl font-bold text-green-800 xs:text-3xl">
                 <a className="hover:underline" href="tel:04681234567">
                   (046) 8123 45 67
                 </a>
@@ -89,20 +89,19 @@ function Footer() {
               ))}
             </div>
           </div>
-          <nav className="gap-15 p-4 flex">
-            <FooterColumn header="Kategorier" content={categories} />
-            <FooterColumn header="Företag" content={company} />
-            <FooterColumn header="Hjälp" content={help} />
+          <nav className="gap-6 py-4 grid grid-cols-1 xs:grid-cols-2 xs:gap-12 lg:grid-cols-4">
+            <FooterColumn header="Categories" content={categories} />
+            <FooterColumn header="Company" content={company} />
+            <FooterColumn header="Help Center" content={help} />
             <FooterColumn header="Partner" content={partner} />
           </nav>
         </div>
       </div>
-      <div className="flex py-6">
-        <p className="text-sm">
-          © 2025 <span className="font-bold">Grupp 4</span>. Alla rätter
-          reserverade
+      <div className="grid grid-cols-1 py-6 gap-6 sm:grid-cols-2 sm:gap-0">
+        <p className="text-sm text-center order-2 sm:text-start sm:order-1">
+          © 2025 <span className="font-bold">Group 4</span>. All Rights Reserved
         </p>
-        <div className="flex gap-4 items-center justify-center w-1/2">
+        <div className="flex gap-4 items-center justify-center order-1 sm:justify-end sm:order-2">
           {colorIcon.map((item) => (
             <FooterIcon key={item.name} icon={item} />
           ))}
