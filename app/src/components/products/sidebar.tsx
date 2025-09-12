@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 
 export default function Sidebar() {
@@ -14,9 +15,9 @@ export default function Sidebar() {
         <ul className="p-2 flex flex-col gap-1 bg-white rounded">
           {categories.map((c, index) => (
             <li key={index}>
-              <a href="c" className="capitalize text-sm hover:underline">
+              <Link href={`category/${c}`} className="capitalize text-sm hover:underline">
                 {c}
-              </a>
+              </Link>
             </li>
           ))}
         </ul>
