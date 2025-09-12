@@ -30,10 +30,10 @@ const variantStyles: VariantStyleMap = {
   },
   title: { large: "text-2xl sm:text-4xl", wide: "text-xl" },
   description: { large: "hidden md:block" },
-  ctaWrapper: { large: "justify-end md:justify-normal", wide: "justify-center md:justify-normal" },
+  ctaWrapper: { large: "justify-center  md:justify-normal", wide: "justify-center md:justify-normal" },
   imageWrapper: {
     normal: "-right-2 top-1/2 -translate-y-1/2",
-    large: "w-96 -bottom-15 left-1/2 -translate-x-1/2 md:top-1/2 md:bottom-auto md:right-0 md:left-auto md:-translate-x-0 md:-translate-y-1/2",
+    large: "w-96 top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 md:top-1/2 md:bottom-auto md:right-0 md:left-auto md:-translate-x-0 md:-translate-y-1/2",
     wide: "w-48 -bottom-20 left-1/2 -translate-x-1/2 md:bottom-auto md:left-auto md:-translate-x-0 md:-right-2 md:top-1/2 md:-translate-y-1/2",
     centered: "-bottom-18 left-1/2 -translate-x-1/2",
   },
@@ -60,7 +60,7 @@ export default function HeroProductCard({
   return (
     <article
       className={cn(
-        "flex flex-col justify-between p-8 overflow-hidden rounded-lg relative hover:scale-[1.01] transition-all",
+        "flex flex-col justify-between p-8 overflow-hidden rounded relative hover:scale-[1.01] transition-all",
         containerClasses,
         light && "text-white",
         className
@@ -90,7 +90,9 @@ export default function HeroProductCard({
             asChild
             variant={light ? "secondary" : "default"}
             size={variant === "centered" ? "lg" : "default"}
-            className={"shadow-lg cursor-pointer"}
+            className={cn("shadow-lg cursor-pointer",
+              variant === "large" && "w-full xs:w-auto"
+            )}
           >
             <Link href="/">{cta}</Link>
           </Button>
