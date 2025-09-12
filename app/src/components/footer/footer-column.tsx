@@ -14,7 +14,12 @@ export function FooterColumn({
       <ol>
         {content.map((item) => (
           <li key={item.slug + item.name}>
-            <a href={item.slug}>{item.name}</a>
+            <a
+              href={item.slug}
+              className="text-sm text-muted-foreground hover:text-foreground hover:underline transition-all"
+            >
+              {item.name}
+            </a>
           </li>
         ))}
       </ol>
