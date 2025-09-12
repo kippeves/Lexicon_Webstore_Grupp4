@@ -1,13 +1,13 @@
-import Breadcrumbs from "@/components/breadcrumbs";
-
 export default function ProductsLayout({
+  breadcrumb,
   children,
 }: {
+  breadcrumb: React.ReactNode;
   children: React.ReactNode;
 }) {
   return (
     <>
-      <Breadcrumbs />
+      {breadcrumb}
       {children}
     </>
   );
