@@ -1,6 +1,6 @@
 import { Product, ThinProduct, ThinProductList } from "../types";
 const baseURI = 'https://dummyjson.com/products/';
-
+const thinFilter = 'select=title,price,discountPercentage,thumbnail,rating,availabilityStatus';
 
 export const getProduct = async (id: number): Promise<Product> => {
     try {
@@ -11,9 +11,18 @@ export const getProduct = async (id: number): Promise<Product> => {
     }
 }
 
+export const getThinProduct = async (id: number): Promise<ThinProduct> => {
+    try {
+        const response = await fetch(`${baseURI}${id}?${thinFilter}`);
+        return await response.json() as ThinProduct;
+    } catch (e) {
+        throw (e);
+    }
+}
+
 export const searchByName = async ({ name, page }: { name: string, page?: { number: number, perPage: number } }): Promise<ThinProductList> => {
     try {
-        let URI = `${baseURI}search?q=${name}&select=title,price,discountPercentage,thumbnail,rating,availabilityStatus`
+        let URI = `${baseURI}search?q=${name}&${thinFilter}`
         if (page)
             URI += `&skip=${page.perPage * (page.number - 1)}&limit=${page.perPage}`;
         const response = await fetch(URI);
@@ -24,7 +33,7 @@ export const searchByName = async ({ name, page }: { name: string, page?: { numb
 }
 
 export const getProducts = async ({ limit }: { limit?: number }): Promise<ThinProduct[]> => {
-    const filter = '?select=title,price,discountPercentage,thumbnail,rating,availabilityStatus';
+    const filter = '?' + thinFilter;
     const limitFilter = limit !== undefined ? `${filter}&limit=${Math.ceil(limit / 4)}` : filter;
     const categories = ['smartphones', 'tablets', 'mobile-accessories', 'laptops'];
     const filterURIS = categories.map(categoryName => `${baseURI}category/${categoryName}${limitFilter}`)
