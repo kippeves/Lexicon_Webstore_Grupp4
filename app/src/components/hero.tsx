@@ -12,18 +12,18 @@ interface ProductConfig
 }
 
 const PRODUCT_IDS: ProductConfig[] = [
-  { id: 79, variant: "large", title: "Asus Zenbook Pro", cta: "Learn More", showPrice: true, showDescription: true, className: "col-span-6 row-span-4 bg-gradient-to-tl from-blue-300 to-purple-200 xl:col-span-4" },
+  { id: 79, variant: "large", title: "Asus Zenbook Pro", cta: "Learn More", showPrice: true, showDescription: true, className: "col-span-6 row-span-6 xs:row-span-4 bg-gradient-to-tl from-blue-300 to-purple-200 xl:col-span-4" },
   { id: 123, cta: "Shop Now", showPrice: true, className: "col-span-2 row-span-3 col-start-5 bg-gradient-to-t from-slate-400 to-slate-200 hidden xl:flex" },
   { id: 99, variant: "centered", cta: "Discover Now", showPrice: true, light: true, className: "col-span-2 row-span-3 col-start-5 row-start-4 bg-gradient-to-t from-indigo-500 to-blue-400 hidden xl:flex" },
-  { id: 159, variant: "wide", cta: "Explore", title: "iPad Mini", light: true, className: "col-span-3 row-span-2 xl:row-span-2 xl:row-start-5 xl:col-span-2 bg-gradient-to-b from-red-400 to-yellow-300" },
-  { id: 100, cta: "Shop Now", light: true, variant: "wide", className: "col-span-3 row-span-2 xl:row-span-2 xl:col-start-3 xl:row-start-5 xl:col-span-2 bg-gradient-to-b from-stone-800 to-gray-500" },
+  { id: 159, variant: "wide", cta: "Explore", title: "iPad Mini", light: true, className: "hidden xs:flex col-span-6 sm:col-span-3 row-span-2 xl:row-span-2 xl:row-start-5 xl:col-span-2 bg-gradient-to-b from-red-400 to-yellow-300" },
+  { id: 100, cta: "Shop Now", light: true, variant: "wide", className: "hidden col-span-3 row-span-2 sm:flex xl:row-span-2 xl:col-start-3 xl:row-start-5 xl:col-span-2 bg-gradient-to-b from-stone-800 to-gray-500" },
 ];
 
 export default async function HeroSection() {
   const products = await Promise.all(PRODUCT_IDS.map((p) => getProduct(p.id)));
 
   return (
-    <section className="grid grid-cols-6 grid-rows-6 gap-4 min-h-[32rem]">
+    <section className="grid grid-cols-6 grid-rows-6 gap-2 min-h-[32rem]">
       {products.map((product, index) => {
         const config = PRODUCT_IDS[index];
         if (!product) return null;
