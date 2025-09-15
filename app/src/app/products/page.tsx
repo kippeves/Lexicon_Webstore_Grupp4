@@ -12,11 +12,13 @@ export const metadata: Metadata = {
 
 export default async function ProductsPage({ searchParams }: { searchParams: Promise<{ [key: string]: string | undefined }> }) {
   const params = await searchParams;
-  const limit = params.limit ? parseInt(params.limit) : 12;
-  const page = params.page ? parseInt(params.page) : 1;
+  const limit = params.limit ? parseInt(params.limit) : undefined;
+  const page = params.page ? parseInt(params.page) : undefined;
+  const sort = params.sort ? params.sort : undefined;
+  const order = params.order ? params.order : undefined;
   const query = params.search ? params.search : undefined;
 
-  const filter: ProductsFilter = { limit: limit, page: page, query: query };
+  const filter: ProductsFilter = { limit: limit, page: page, sort, order, query: query };
   const data = getProductsByFilter(filter);
   const searchTitle = query ? `Search for "${query}" yielded:` : '';
   return (
