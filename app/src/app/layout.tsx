@@ -5,6 +5,7 @@ import ContentGrid from "@/components/content-grid";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
 import SearchBar from "@/components/search-bar";
+import { Toaster } from "sonner"
 
 const interSans = Inter({
   subsets: ["latin"],
@@ -24,6 +25,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${interSans.className} antialiased bg-[#e2e4eb]`}>
+        <Toaster position="bottom-center" richColors/>
         <ContentGrid className={"min-h-dvh grid-rows-[auto_auto_1fr_auto]"}>
           <Header />
           <SearchBar />

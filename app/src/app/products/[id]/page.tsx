@@ -16,6 +16,7 @@ import {
   TabsList,
   TabsTrigger,
 } from "@/components/ui/tabs"
+import AddToCartButton from "@/components/add-to-cart-button";
 
 
 export default async function ProductPage(props: { params: Promise<{ [key: string]: string | undefined }> }) {
@@ -35,19 +36,42 @@ export default async function ProductPage(props: { params: Promise<{ [key: strin
           <Image src={product.images[0]} alt={product.title} width={500} height={500} />
         </div>
 
-        <div className="flex flex-col gap-2 flex-grow mt-2">
+        <div className="flex flex-col gap-2 flex-grow mt-2 justify-start">
           <h1 className="text-2xl font-bold mb-2">{product.title}</h1>
           <p className="text-lg font-semibold mb-2">Rating: {product.rating} ⭐</p>
           <ProductPrice price={product.price} discountPercentage={product.discountPercentage} />
           <p className="text-md  mb-2">Description: {product.description}</p>
-          <Separator />
           <p className="text-lg font-semibold mb-2">Brand: {product.brand}</p>
-          <StockStatus availabilityStatus={product.availabilityStatus} />
+          <Separator />
 
-          <div className="flex flex-col ml-auto justify-between">
-            <button className="bg-blue-500 text-white px-4 py-2 rounded mb-2 hover:bg-blue-600">Add to Cart</button>
-            <button className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">Buy Now</button>
+          <div className="flex flex-col mt-2 mb-2">
+            <StockStatus availabilityStatus={product.availabilityStatus} />
+            <div className="flex flex-row justify-start items-center gap-4 mt-2">
+              <div className="flex flex-row items-center border rounded-lg px-4 py-2 bg-white shadow-sm">
+                <button
+                  type="button"
+                  className="text-2xl font-bold px-2"
+                  aria-label="Decrease quantity"
+                // TODO: handle decrease
+                >
+                  −
+                </button>
+                <span className="mx-4 text-lg font-medium select-none">1</span>
+                <button
+                  type="button"
+                  className="text-2xl font-bold px-2"
+                  aria-label="Increase quantity"
+                // TODO: handle increase
+                >
+                  +
+                </button>
+              </div>
+              <AddToCartButton />
+            </div>
           </div>
+
+
+          <Separator />
 
           <p className="text-sm font-semibold">SKU: <span className="text-sm text-gray-500">{product.sku}</span></p>
           <p className="text-sm font-semibold">CATEGORY: <span className="text-sm text-gray-500">{product.category}</span></p>
