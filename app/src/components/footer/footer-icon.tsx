@@ -7,7 +7,7 @@ export function FooterIcon({ icon }: { icon: linkIcon }) {
     <a className="flex items-center" href="#">
       <span className="sr-only">{icon.name}</span>
       <Image
-        alt={icon.name}
+        alt=""
         width={icon.width}
         height={icon.height}
         src={`/icons/${icon.name.toLowerCase()}.svg`}
