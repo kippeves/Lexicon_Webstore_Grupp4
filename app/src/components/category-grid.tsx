@@ -18,16 +18,23 @@ interface CategoryCardProps {
 const categories: CategoryCardProps[] = [
   { href: "/category/smartphones", icon: Smartphone, label: "Smartphones" },
   { href: "/category/tablets", icon: Tablet, label: "Tablets" },
-  { href: "/category/mobile-accessories", icon: Headphones, label: "Mobile Accessories" },
+  {
+    href: "/category/mobile-accessories",
+    icon: Headphones,
+    label: "Mobile Accessories",
+  },
   { href: "/category/laptops", icon: Laptop, label: "Laptops" },
 ];
 
 export default function CategoryGrid() {
   return (
-    <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-4">
-      {categories.map((category) => (
-        <CategoryCard key={category.href} {...category} />
-      ))}
+    <div className="flex flex-col gap-4">
+      <h2 className="text-xl font-bold">Categories</h2>
+      <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-4">
+        {categories.map((category) => (
+          <CategoryCard key={category.href} {...category} />
+        ))}
+      </div>
     </div>
   );
 }
