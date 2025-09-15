@@ -10,6 +10,12 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Webshop - Contact Us",
+  description: "Reach out to us!",
+};
 
 export default async function ContactPage() {
   async function purgeData(data: FormData) {

@@ -1,7 +1,13 @@
 import ProductsGrid from "@/components/products-grid";
 import Sidebar from "@/components/products/sidebar";
 import { searchByName } from "@/lib/data/products";
+import { Metadata } from "next";
 import React, { Suspense } from "react";
+
+export const metadata: Metadata = {
+  title: "Webshop - Products",
+  description: "Browser our products - Find what you're looking for",
+};
 
 export default function ProductsPage() {
   const searchTerm = "phone";
