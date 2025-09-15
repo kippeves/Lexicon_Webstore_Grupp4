@@ -17,6 +17,8 @@ import {
   TabsTrigger,
 } from "@/components/ui/tabs"
 import AddToCartButton from "@/components/add-to-cart-button";
+import { linkIcon } from "@/components/footer";
+import { FooterIcon } from "@/components/footer/footer-icon";
 
 
 export default async function ProductPage(props: { params: Promise<{ [key: string]: string | undefined }> }) {
@@ -28,6 +30,14 @@ export default async function ProductPage(props: { params: Promise<{ [key: strin
     return <div>Invalid product ID</div>;
   }
   const product = await getProduct(productId);
+
+  const colorIcon: linkIcon[] = [
+    { name: "Paypal", width: 14, height: 16 },
+    { name: "Mastercard", width: 27, height: 16 },
+    { name: "Visa", width: 42, height: 16 },
+    { name: "Stripe", width: 40, height: 16 },
+    { name: "Klarna", width: 72, height: 16 },
+  ];
 
   return (
     <article>
@@ -46,7 +56,7 @@ export default async function ProductPage(props: { params: Promise<{ [key: strin
 
           <div className="flex flex-col mt-2 mb-2">
             <StockStatus availabilityStatus={product.availabilityStatus} />
-            <div className="flex flex-row justify-start items-center gap-4 mt-2">
+            <div className="flex flex-row justify-start items-center gap-4 mt-2 mb-2">
               <div className="flex flex-row items-center border rounded-lg px-4 py-2 bg-white shadow-sm">
                 <button
                   type="button"
@@ -68,6 +78,14 @@ export default async function ProductPage(props: { params: Promise<{ [key: strin
               </div>
               <AddToCartButton />
             </div>
+            <p className="text-sm mb-2">Guaranteed Safe Checkout</p>
+            <div className="flex gap-4 items-center justify-start">
+              {colorIcon.map((item) => (
+                <FooterIcon key={item.name} icon={item} />
+              ))}
+            </div>
+
+
           </div>
 
 
