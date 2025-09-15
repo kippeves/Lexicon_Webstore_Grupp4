@@ -1,5 +1,6 @@
 "use client";
 import { ThinProductList } from "@/lib/types";
+import { ThinProductList } from "@/lib/types";
 import ProductCard from "./product-card";
 import { use } from "react";
 import { PaginationFilter, PaginationPaging } from "./pagination";
@@ -11,6 +12,7 @@ export default function ProductsGrid({
   page = 1,
   className,
 }: {
+  productsTask: Promise<ThinProductList>;
   productsTask: Promise<ThinProductList>;
   title?: string;
   page?: number;

@@ -1,3 +1,10 @@
+export interface ProductsFilter {
+  limit?: number;
+  page?: number;
+  order?: string;
+  categories?: string[];
+}
+
 export interface ProductList {
   products: Product[]
   total: number
