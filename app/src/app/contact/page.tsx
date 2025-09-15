@@ -1,4 +1,3 @@
-"use server";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -10,6 +9,12 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Webshop - Contact Us",
+  description: "Reach out to us!",
+};
 
 export default async function ContactPage() {
   async function purgeData(data: FormData) {
