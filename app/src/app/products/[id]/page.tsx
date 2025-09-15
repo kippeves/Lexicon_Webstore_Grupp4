@@ -127,13 +127,13 @@ export default async function ProductPage(props: Props) {
           <TabsList className="mb-2 bg-white flex flex-row align-middle justify-start">
             <TabsTrigger
               value="description"
-              className="px-0 mr-8 text-base font-bold border-b-2 border-transparent data-[state=active]:text-black data-[state=active]:shadow-none data-[state=inactive]:text-gray-400 transition-colors"
+              className="px-0 mr-8 text-base font-bold border-b-2 border-transparent data-[state=active]:text-black data-[state=active]:shadow-none data-[state=inactive]:text-gray-400 transition-colors data-[state=inactive]:hover:text-gray-600 data-[state=inactive]:hover:underline"
             >
               DESCRIPTION
             </TabsTrigger>
             <TabsTrigger
               value="reviews"
-              className="px-0 text-base font-bold border-b-2 border-transparent data-[state=active]:text-black data-[state=active]:shadow-none data-[state=inactive]:text-gray-400 transition-colors"
+              className="px-0 text-base font-bold border-b-2 border-transparent data-[state=active]:text-black data-[state=active]:shadow-none data-[state=inactive]:text-gray-400 transition-colors data-[state=inactive]:hover:text-gray-600 data-[state=inactive]:hover:underline"
             >
               REVIEWS ({product.reviews.length})
             </TabsTrigger>
