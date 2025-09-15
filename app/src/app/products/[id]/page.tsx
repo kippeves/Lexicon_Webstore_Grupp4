@@ -9,8 +9,16 @@ import {
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from "@/components/ui/accordion";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+} from "@/components/ui/accordion"
+import {
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
+} from "@/components/ui/tabs"
+import AddToCartButton from "@/components/add-to-cart-button";
+import { linkIcon } from "@/components/footer";
+import { FooterIcon } from "@/components/footer/footer-icon";
 import { Metadata, ResolvingMetadata } from "next";
 
 type Props = { params: Promise<{ [key: string]: string | undefined }> };
@@ -41,6 +49,14 @@ export default async function ProductPage(props: Props) {
   }
   const product = await getProduct(productId);
 
+  const colorIcon: linkIcon[] = [
+    { name: "Paypal", width: 14, height: 16 },
+    { name: "Mastercard", width: 27, height: 16 },
+    { name: "Visa", width: 42, height: 16 },
+    { name: "Stripe", width: 40, height: 16 },
+    { name: "Klarna", width: 72, height: 16 },
+  ];
+
   return (
     <article>
       <section className="flex flex-row gap-4 p-4 bg-white rounded-lg">
@@ -53,7 +69,7 @@ export default async function ProductPage(props: Props) {
           />
         </div>
 
-        <div className="flex flex-col gap-2 flex-grow mt-2">
+        <div className="flex flex-col gap-2 flex-grow mt-2 justify-start">
           <h1 className="text-2xl font-bold mb-2">{product.title}</h1>
           <p className="text-lg font-semibold mb-2">
             Rating: {product.rating} ⭐
@@ -63,32 +79,46 @@ export default async function ProductPage(props: Props) {
             discountPercentage={product.discountPercentage}
           />
           <p className="text-md  mb-2">Description: {product.description}</p>
-          <Separator />
           <p className="text-lg font-semibold mb-2">Brand: {product.brand}</p>
-          <StockStatus availabilityStatus={product.availabilityStatus} />
+          <Separator />
 
-          <div className="flex flex-col ml-auto justify-between">
-            <button className="bg-blue-500 text-white px-4 py-2 rounded mb-2 hover:bg-blue-600">
-              Add to Cart
-            </button>
-            <button className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">
-              Buy Now
-            </button>
+          <div className="flex flex-col mt-2 mb-2">
+            <StockStatus availabilityStatus={product.availabilityStatus} />
+            <div className="flex flex-row justify-start items-center gap-4 mt-2 mb-2">
+              <div className="flex flex-row items-center border rounded-lg px-4 py-2 bg-white shadow-sm">
+                <button
+                  type="button"
+                  className="text-2xl font-bold px-2"
+                  aria-label="Decrease quantity"
+                // TODO: handle decrease
+                >
+                  −
+                </button>
+                <span className="mx-4 text-lg font-medium select-none">1</span>
+                <button
+                  type="button"
+                  className="text-2xl font-bold px-2"
+                  aria-label="Increase quantity"
+                // TODO: handle increase
+                >
+                  +
+                </button>
+              </div>
+              <AddToCartButton />
+            </div>
+            <p className="text-sm mb-2">Guaranteed Safe Checkout</p>
+            <div className="flex gap-4 items-center justify-start">
+              {colorIcon.map((item) => (
+                <FooterIcon key={item.name} icon={item} />
+              ))}
+            </div>
           </div>
 
-          <p className="text-sm font-semibold">
-            SKU: <span className="text-sm text-gray-500">{product.sku}</span>
-          </p>
-          <p className="text-sm font-semibold">
-            CATEGORY:{" "}
-            <span className="text-sm text-gray-500">{product.category}</span>
-          </p>
-          <p className="text-sm font-semibold">
-            TAGS:{" "}
-            <span className="text-sm text-gray-500">
-              {product.tags.join(", ")}
-            </span>
-          </p>
+          <Separator />
+
+          <p className="text-sm font-semibold">SKU: <span className="text-sm text-gray-500">{product.sku}</span></p>
+          <p className="text-sm font-semibold">CATEGORY: <span className="text-sm text-gray-500">{product.category}</span></p>
+          <p className="text-sm font-semibold">TAGS: <span className="text-sm text-gray-500">{product.tags.join(", ")}</span></p>
         </div>
       </section>
 
