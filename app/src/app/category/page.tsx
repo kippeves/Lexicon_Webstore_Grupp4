@@ -1,9 +1,10 @@
 import CategoryGrid from "@/components/category-grid";
+import { ContentWrapper } from "@/components/content-wrapper";
 
 export default function CategoryPage() {
   return (
-    <div className="bg-white p-6 rounded">
+    <ContentWrapper>
       <CategoryGrid />
-    </div>
+    </ContentWrapper>
   );
 }
