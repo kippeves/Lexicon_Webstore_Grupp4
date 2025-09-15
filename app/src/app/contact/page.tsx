@@ -31,8 +31,7 @@ export default async function ContactPage() {
   ];
 
   return (
-    <ContentWrapper>
-      <div className="flex flex-col gap-4 py-4">
+      <ContentWrapper className="flex flex-col gap-4">
         <h2 className="text-3xl">Contact</h2>
         <div className="flex flex-col gap-2">
           <div className="text-justify w-1/2 flex flex-col gap-4">
@@ -99,7 +98,6 @@ export default async function ContactPage() {
             <Button type="submit">Send</Button>
           </div>
         </form>
-      </div>
-    </ContentWrapper>
+      </ContentWrapper>
   );
 }
