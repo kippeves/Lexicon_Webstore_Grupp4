@@ -1,6 +1,5 @@
 "use client";
 import { ThinProductList } from "@/lib/types";
-import { ThinProductList } from "@/lib/types";
 import ProductCard from "./product-card";
 import { use } from "react";
 import { PaginationFilter, PaginationPaging } from "./pagination";
@@ -9,16 +8,16 @@ export default function ProductsGrid({
   productsTask: listTask,
   title,
   emptyText,
-  page = 1,
   className,
 }: {
-  productsTask: Promise<ThinProductList>;
   productsTask: Promise<ThinProductList>;
   title?: string;
   page?: number;
   emptyText?: string;
 } & React.ComponentProps<"div">) {
-  const { products, limit, total } = use(listTask);
+  const data = use(listTask);
+  const { products, total, limit, skip } = data;
+  const page = Math.floor(skip/limit)+1;
 
   return (
     <div className={`flex flex-col gap-4 ${className || ""}`}>

@@ -1,8 +1,10 @@
 export interface ProductsFilter {
   limit?: number;
   page?: number;
+  sort?: string;
   order?: string;
   categories?: string[];
+  query?: string;
 }
 
 export interface ProductList {
