@@ -52,7 +52,7 @@ const SearchForm = () => {
       action={handleSearch}
     >
       <Select name="type" defaultValue="all" required>
-        <SelectTrigger className="ps-4 font-semibold ring-0 outline-0 focus-visible:ring-0 border-0 ">
+        <SelectTrigger className="ps-4 font-semibold ring-0 outline-0 focus-visible:ring-0 border-0 cursor-pointer">
           <SelectValue />
         </SelectTrigger>
         <SelectContent>
@@ -80,7 +80,7 @@ const SearchForm = () => {
       />
       <Button
         variant={"ghost"}
-        className="hover:bg-[var(--primary-green)] hover:text-white rounded-2xl h-7"
+        className="hover:bg-[var(--primary-green)] hover:text-white rounded-2xl h-7 cursor-pointer"
         type="submit"
       >
         <Search />
