@@ -1,3 +1,4 @@
+import { ContentWrapper } from "@/components/content-wrapper";
 import FeaturedGrid from "@/components/featured-grid";
 import HeroSection from "@/components/hero";
 import { getProducts } from "@/lib/data/products";
@@ -7,14 +8,14 @@ export default async function Home() {
   const products = getProducts({ limit: 10 });
   return (
     <>
-      <div className="rounded p-0 sm:p-6 bg-transparent sm:bg-white">
+      <ContentWrapper className="p-0 sm:p-6 bg-transparent sm:bg-white">
         <HeroSection />
-      </div>
-      <div className="rounded p-6 bg-white grow">
+      </ContentWrapper>
+      <ContentWrapper>
         <Suspense>
           <FeaturedGrid productsTask={products} />
         </Suspense>
-      </div>
+      </ContentWrapper>
     </>
   );
 }

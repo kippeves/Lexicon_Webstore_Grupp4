@@ -20,6 +20,7 @@ import AddToCartButton from "@/components/add-to-cart-button";
 import { linkIcon } from "@/components/footer";
 import { FooterIcon } from "@/components/footer/footer-icon";
 import { Metadata, ResolvingMetadata } from "next";
+import { ContentWrapper } from "@/components/content-wrapper";
 
 type Props = { params: Promise<{ [key: string]: string | undefined }> };
 
@@ -58,8 +59,8 @@ export default async function ProductPage(props: Props) {
   ];
 
   return (
-    <article>
-      <section className="flex flex-row gap-4 p-4 bg-white rounded-lg">
+    <article className="flex flex-col gap-4">
+      <ContentWrapper className="flex flex-row gap-4" as="section">
         <div className="flex-shrink-0">
           <Image
             src={product.images[0]}
@@ -120,9 +121,9 @@ export default async function ProductPage(props: Props) {
           <p className="text-sm font-semibold">CATEGORY: <span className="text-sm text-gray-500">{product.category}</span></p>
           <p className="text-sm font-semibold">TAGS: <span className="text-sm text-gray-500">{product.tags.join(", ")}</span></p>
         </div>
-      </section>
+      </ContentWrapper>
 
-      <section className="mt-4 p-4 bg-white rounded-lg">
+      <ContentWrapper>
         <Tabs defaultValue="description" className="w-full">
           <TabsList className="mb-2 bg-white flex flex-row align-middle justify-start">
             <TabsTrigger
@@ -191,7 +192,7 @@ export default async function ProductPage(props: Props) {
             )}
           </TabsContent>
         </Tabs>
-      </section>
+      </ContentWrapper>
     </article>
   );
 }

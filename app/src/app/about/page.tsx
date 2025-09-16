@@ -1,3 +1,4 @@
+import { ContentWrapper } from "@/components/content-wrapper";
 import { Metadata } from "next";
 import Image from "next/image";
 
@@ -8,7 +9,7 @@ export const metadata: Metadata = {
 
 export default function AboutPage() {
   return (
-    <div className="container mx-auto px-4 py-12">
+    <ContentWrapper className="py-12">
       <section className="text-center mb-12">
         <h1 className="text-4xl md:text-5xl font-extrabold mb-4 text-primary">About Us</h1>
         <p className="text-lg text-gray-600 max-w-2xl mx-auto">
@@ -78,6 +79,6 @@ export default function AboutPage() {
           Vivamus consequat, orci ut porttitor faucibus, massa augue consectetur diam, in facilisis turpis ligula vel diam. Cras libero tellus, vulputate in aliquet quis, efficitur sed mauris. Phasellus eu cursus lorem.
         </p>
       </section>
-    </div>
+    </ContentWrapper>
   );
 }
