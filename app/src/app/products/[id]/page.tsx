@@ -92,28 +92,8 @@ export default async function ProductPage(props: Props) {
 
           <div className="flex flex-col mt-2 mb-2">
             <StockStatus availabilityStatus={product.availabilityStatus} />
-            <div className="flex flex-row justify-start items-center gap-4 mt-2 mb-2">
-              <div className="flex flex-row items-center border rounded-lg px-4 py-2 bg-white shadow-sm">
-                <button
-                  type="button"
-                  className="text-2xl font-bold px-2"
-                  aria-label="Decrease quantity"
-                // TODO: handle decrease
-                >
-                  −
-                </button>
-                <span className="mx-4 text-lg font-medium select-none">1</span>
-                <button
-                  type="button"
-                  className="text-2xl font-bold px-2"
-                  aria-label="Increase quantity"
-                // TODO: handle increase
-                >
-                  +
-                </button>
-              </div>
-              <AddToCartButton />
-            </div>
+            <AddToCartButton product={product} />
+
             <p className="text-sm mb-2">Guaranteed Safe Checkout</p>
             <div className="flex gap-4 items-center justify-start">
               {colorIcon.map((item) => (

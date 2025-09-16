@@ -76,3 +76,14 @@ export interface Meta {
   barcode: string
   qrCode: string
 }
+
+export interface ShoppingCart {
+  items: ShoppingCartItem[]
+  totalQuantity: number
+  totalPrice: number
+}
+
+export interface ShoppingCartItem {
+  product: ThinProduct
+  quantity: number
+}
