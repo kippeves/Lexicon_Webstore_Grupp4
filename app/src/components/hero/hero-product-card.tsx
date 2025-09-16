@@ -14,6 +14,7 @@ export interface ProductCardProps {
   price?: number;
   cta?: string;
   light?: boolean;
+  id: number;
 }
 
 type VariantStyleMap = Record<
@@ -48,6 +49,7 @@ export default function HeroProductCard({
   price,
   cta = "Shop Now",
   light = false,
+  id,
 }: ProductCardProps) {
   const containerClasses = variantStyles.container[variant];
   const contentClasses = variantStyles.content[variant];
@@ -95,7 +97,7 @@ export default function HeroProductCard({
               variant === "large" && "w-full xs:w-auto"
             )}
           >
-            <Link href="/">{cta}</Link>
+            <Link href={`/products/${id}`}>{cta}</Link>
           </Button>
         </div>
       </div>
