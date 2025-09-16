@@ -69,7 +69,10 @@ export const getProductsByFilter = async (filter: ProductsFilter): Promise<ThinP
     const ordering = `&sortBy=${sort}&order=${order}`;
     let categoring = "";
     // Remove 'all'
-    categories.splice(categories.findIndex((val) => (val === "all")), 1);
+    const rm = categories.findIndex((val) => (val === "all"));
+    if(rm >= 0) {
+        categories.splice(rm, 1);
+    }
     
     if (categories.length > 0) {
             categoring = `&categories=${categories.join()}`;
