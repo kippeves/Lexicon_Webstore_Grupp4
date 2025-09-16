@@ -64,12 +64,10 @@ export const getProducts = async ({ limit }: { limit?: number }): Promise<ThinPr
 }
 
 export const getProductsByFilter = async (filter: ProductsFilter): Promise<ThinProductList> => {
-    const defaultCategories = ["smartphones", "tablets", "mobile-accessories", "laptops"];
-
     const { limit = 12, page = 1, sort = "id", order = "desc", categories = [], query } = filter;
     const paging = `&limit=${limit}&skip=${(page - 1) * limit}`;
     const ordering = `&sortBy=${sort}&order=${order}`;
-    let categoring = `&categories=${defaultCategories.join()}`;
+    let categoring = "";
     // Remove 'all'
     categories.splice(categories.findIndex((val) => (val === "all")), 1);
     
@@ -78,7 +76,7 @@ export const getProductsByFilter = async (filter: ProductsFilter): Promise<ThinP
     }
     let uri = `${baseURI}?${thinFields}${paging}${ordering}${categoring}`;
     if (query) {
-        uri = `${baseURI}/search?q=${query}&${thinFields}${paging}${ordering}`;
+        uri = `${baseURI}/search?q=${query}&${thinFields}${paging}${ordering}${categoring}`;
     }
 
     try {
