@@ -1,3 +1,4 @@
+import { ContentWrapper } from "@/components/content-wrapper";
 import ProductsGrid from "@/components/products-grid";
 import Sidebar from "@/components/products/sidebar";
 import { ProductList } from "@/lib/types";
@@ -32,7 +33,7 @@ export default async function CategoryDetailsPage({
   });
 
   return (
-    <div className="bg-white rounded p-4 flex flex-col">
+    <ContentWrapper className="flex flex-col">
       <h2 className="text-2xl capitalize p-2">Category: {name}</h2>
       <p className="flex gap-2 p-4 justify-evenly text-justify ">
         <span className="w-1/3">
@@ -52,6 +53,6 @@ export default async function CategoryDetailsPage({
         <Sidebar />
         <ProductsGrid className="grow" productsTask={productList} />
       </div>
-    </div>
+    </ContentWrapper>
   );
 }

@@ -1,3 +1,4 @@
+import { ContentWrapper } from "@/components/content-wrapper";
 import ProductsGrid from "@/components/products-grid";
 import Sidebar from "@/components/products/sidebar";
 import { getProductsByFilter } from "@/lib/data/products";
@@ -10,7 +11,11 @@ export const metadata: Metadata = {
   description: "Browser our products - Find what you're looking for",
 };
 
-export default async function ProductsPage({ searchParams }: { searchParams: Promise<{ [key: string]: string | undefined }> }) {
+export default async function ProductsPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ [key: string]: string | undefined }>;
+}) {
   const params = await searchParams;
   const limit = params.limit ? parseInt(params.limit) : undefined;
   const page = params.page ? parseInt(params.page) : undefined;
@@ -19,20 +24,19 @@ export default async function ProductsPage({ searchParams }: { searchParams: Pro
   const query = params.search ? params.search : undefined;
   const categories = params.categories ? params.categories.split(",") : undefined;
 
+
   const filter: ProductsFilter = { limit: limit, page: page, sort: sort, order: order, query: query, categories: categories };
+
   const data = getProductsByFilter(filter);
-  const searchTitle = query ? `Search for "${query}" yielded:` : '';
+  const searchTitle = query ? `Search for "${query}" yielded:` : "";
   return (
-    <article className="flex flex-col gap-2 sm:flex-row grow bg-white p-6">
+    <ContentWrapper className="flex flex-col gap-4 sm:flex-row" as="article">
       <Sidebar />
-      <section className="grow p-2">
+      <section className="grow ">
         <Suspense>
-          <ProductsGrid
-            title={searchTitle}
-            productsTask={data}
-          />
+          <ProductsGrid title={searchTitle} productsTask={data} />
         </Suspense>
       </section>
-    </article>
+    </ContentWrapper>
   );
 }
