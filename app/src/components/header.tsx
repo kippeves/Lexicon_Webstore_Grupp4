@@ -15,6 +15,7 @@ import {
 } from "./ui/dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { HeaderLink } from "./header/headerlink";
+import HeaderCartButton from "./header/header-cart-button";
 
 export default function Header() {
   const nav = [
@@ -76,6 +77,7 @@ export default function Header() {
             ))}
           </DropdownMenuContent>
         </DropdownMenu>
+        <HeaderCartButton />
       </section>
     </header>
   );
