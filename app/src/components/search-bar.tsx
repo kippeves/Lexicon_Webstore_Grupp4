@@ -9,6 +9,7 @@ import {
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
 import { Search } from "lucide-react";
+import { redirect, RedirectType } from "next/navigation";
 
 async function SearchBar() {
   return (
@@ -39,7 +40,11 @@ const SearchForm = () => {
     "use server";
     const type = data.get("type");
     const name = data.get("productName");
-    console.log({ type, name });
+
+    if (name) {
+      const category = (type) ? type.toString() : "";
+      redirect(`/products?search=${name.toString()}&categories=${category}`, RedirectType.push);
+    }
   }
   return (
     <form
