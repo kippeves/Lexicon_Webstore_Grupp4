@@ -13,9 +13,9 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
-import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { HeaderLink } from "./header/headerlink";
 import HeaderCartButton from "./header/header-cart-button";
+import HeaderUserButton from "./header/header-user-button";
 
 export default function Header() {
   const nav = [
@@ -24,7 +24,6 @@ export default function Header() {
     { slug: ["about"], label: "About" },
     { slug: ["contact"], label: "Contact" },
   ];
-  const showUser = false;
 
   return (
     <header className="flex flex-row p-5 justify-start items-center bg-white h-fit">
@@ -45,17 +44,7 @@ export default function Header() {
         </NavigationMenuList>
       </NavigationMenu>
       <section className="ml-auto flex flex-row">
-        {showUser ? (
-          <button className="flex flex-row justify-center items-center cursor-pointer hover:underline hover:decoration-solid">
-            <Avatar className="w-12 h-12">
-              <AvatarImage />
-              <AvatarFallback className="bg-gray-300"></AvatarFallback>
-            </Avatar>
-            <span className="ml-2 font-bold text-left">Log in / Register</span>
-          </button>
-        ) : (
-          ""
-        )}
+        <HeaderUserButton />
         <DropdownMenu>
           <DropdownMenuTrigger className="sm:hidden px-2 ml-2 rounded-md cursor-pointer data-[state=open]:bg-gray-300">
             <Menu width={38} height={38} />

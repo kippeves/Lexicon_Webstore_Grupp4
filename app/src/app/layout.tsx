@@ -6,6 +6,7 @@ import Header from "@/components/header";
 import Footer from "@/components/footer";
 import SearchBar from "@/components/search-bar";
 import { Toaster } from "sonner"
+import { ClerkProvider } from "@clerk/nextjs";
 
 const interSans = Inter({
   subsets: ["latin"],
@@ -23,16 +24,20 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${interSans.className} antialiased bg-[#e2e4eb]`}>
-        <Toaster position="bottom-center" richColors/>
-        <ContentGrid className={"min-h-dvh grid-rows-[auto_auto_1fr_auto]"}>
-          <Header />
-          <SearchBar />
-          <main className="flex flex-col gap-4 my-4">{children}</main>
-          <Footer />
-        </ContentGrid>
-      </body>
-    </html>
+    <ClerkProvider appearance={{
+      cssLayerName: 'clerk',
+    }}>
+      <html lang="en">
+        <body className={`${interSans.className} antialiased bg-[#e2e4eb]`}>
+          <Toaster position="bottom-center" richColors />
+          <ContentGrid className={"min-h-dvh grid-rows-[auto_auto_1fr_auto]"}>
+            <Header />
+            <SearchBar />
+            <main className="flex flex-col gap-4 my-4">{children}</main>
+            <Footer />
+          </ContentGrid>
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }
