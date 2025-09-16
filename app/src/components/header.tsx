@@ -16,6 +16,13 @@ import {
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { HeaderLink } from "./header/headerlink";
 import HeaderCartButton from "./header/header-cart-button";
+import {
+  ClerkProvider,
+  SignInButton,
+  SignedIn,
+  SignedOut,
+  UserButton,
+} from '@clerk/nextjs'
 
 export default function Header() {
   const nav = [
@@ -24,7 +31,7 @@ export default function Header() {
     { slug: ["about"], label: "About" },
     { slug: ["contact"], label: "Contact" },
   ];
-  const showUser = false;
+  const showUser = true;
 
   return (
     <header className="flex flex-row p-5 justify-start items-center bg-white h-fit">
@@ -46,13 +53,29 @@ export default function Header() {
       </NavigationMenu>
       <section className="ml-auto flex flex-row">
         {showUser ? (
-          <button className="flex flex-row justify-center items-center cursor-pointer hover:underline hover:decoration-solid">
-            <Avatar className="w-12 h-12">
-              <AvatarImage />
-              <AvatarFallback className="bg-gray-300"></AvatarFallback>
-            </Avatar>
-            <span className="ml-2 font-bold text-left">Log in / Register</span>
-          </button>
+          <ClerkProvider>
+            <SignedOut>
+              <SignInButton>
+                <button className="flex flex-row justify-center items-center cursor-pointer hover:underline hover:decoration-solid">
+                  <Avatar className="w-12 h-12">
+                    <AvatarImage />
+                    <AvatarFallback className="bg-gray-300"></AvatarFallback>
+                  </Avatar>
+                  <span className="ml-2 font-bold text-left">Log in / Register</span>
+                </button>
+              </SignInButton>
+            </SignedOut>
+            <SignedIn>
+              <UserButton>
+                <button className="flex flex-row justify-center items-center cursor-pointer hover:underline hover:decoration-solid">
+                  <Avatar className="w-12 h-12">
+                    <AvatarImage />
+                    <AvatarFallback className="bg-gray-300"></AvatarFallback>
+                  </Avatar>
+                </button>
+              </UserButton>
+            </SignedIn>
+          </ClerkProvider>
         ) : (
           ""
         )}
