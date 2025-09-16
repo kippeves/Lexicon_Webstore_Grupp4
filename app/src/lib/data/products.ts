@@ -86,7 +86,7 @@ export const getProductsByFilter = async (filter: ProductsFilter): Promise<ThinP
         params.set("q", query);
     if (brand)
         params.set("brand", brand.join())
-    if (categories)
+    if (categories && !categories?.includes("all"))
         params.set("categories", categories.join())
 
     const uri = decodeURIComponent(`${baseURI}?${thinFields}&${params}`);

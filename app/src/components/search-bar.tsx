@@ -9,6 +9,7 @@ import {
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
 import { Search } from "lucide-react";
+import { redirect, RedirectType } from "next/navigation";
 
 async function SearchBar() {
   return (
@@ -39,7 +40,11 @@ const SearchForm = () => {
     "use server";
     const type = data.get("type");
     const name = data.get("productName");
-    console.log({ type, name });
+
+    if (name) {
+      const category = (type) ? type.toString() : "";
+      redirect(`/products?search=${name.toString()}&categories=${category}`, RedirectType.push);
+    }
   }
   return (
     <form
@@ -47,7 +52,7 @@ const SearchForm = () => {
       action={handleSearch}
     >
       <Select name="type" defaultValue="all" required>
-        <SelectTrigger className="ps-4 font-semibold ring-0 outline-0 focus-visible:ring-0 border-0 ">
+        <SelectTrigger className="ps-4 font-semibold ring-0 outline-0 focus-visible:ring-0 border-0 cursor-pointer">
           <SelectValue />
         </SelectTrigger>
         <SelectContent>
@@ -75,7 +80,7 @@ const SearchForm = () => {
       />
       <Button
         variant={"ghost"}
-        className="hover:bg-[var(--primary-green)] hover:text-white rounded-2xl h-7"
+        className="hover:bg-[var(--primary-green)] hover:text-white rounded-2xl h-7 cursor-pointer"
         type="submit"
       >
         <Search />
