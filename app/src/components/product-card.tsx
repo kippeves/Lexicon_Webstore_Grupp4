@@ -15,7 +15,7 @@ export default function ProductCard({ product }: { product: ThinProduct }) {
           <Image
             src={product.thumbnail}
             alt={product.title}
-            className="w-full h-48 object-cover rounded"
+            className="w-full h-48 object-scale-down rounded"
             width={300}
             height={300}
           />
