@@ -70,8 +70,11 @@ export const getProductsByFilter = async (filter: ProductsFilter): Promise<ThinP
     const paging = `&limit=${limit}&skip=${(page - 1) * limit}`;
     const ordering = `&sortBy=${sort}&order=${order}`;
     let categoring = `&categories=${defaultCategories.join()}`;
+    // Remove 'all'
+    categories.splice(categories.findIndex((val) => (val === "all")), 1);
+    
     if (categories.length > 0) {
-        categoring = `&categories=${categories.join()}`;
+            categoring = `&categories=${categories.join()}`;
     }
     let uri = `${baseURI}?${thinFields}${paging}${ordering}${categoring}`;
     if (query) {
@@ -83,6 +86,8 @@ export const getProductsByFilter = async (filter: ProductsFilter): Promise<ThinP
             setTimeout(async () => {
                 const request = await fetch(uri);
                 const list = await request.json() as ThinProductList;
+                // Enforce limit as limit instead of potential result count
+                list.limit = limit;
                 resolve(list);
             }, 250);
         });
