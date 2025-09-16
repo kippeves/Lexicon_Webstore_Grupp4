@@ -37,6 +37,7 @@ export default async function HeroSection() {
           variant: config.variant,
           light: config.light,
           className: config.className,
+          id: product.id
         };
 
         return <HeroProductCard key={product.id} {...props} />;
