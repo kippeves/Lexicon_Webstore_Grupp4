@@ -23,10 +23,18 @@ export default async function ProductsPage({
   const order = params.order ? params.order : undefined;
   const query = params.search ? params.search : undefined;
   const categories = params.categories ? params.categories.split(",") : undefined;
+  const brand = params.brand ? params.brand.split(",") : undefined;
 
 
-  const filter: ProductsFilter = { limit: limit, page: page, sort: sort, order: order, query: query, categories: categories };
-
+  const filter: ProductsFilter = {
+    limit: limit,
+    page: page,
+    sort,
+    order,
+    query,
+    categories,
+    brand
+  };
   const data = getProductsByFilter(filter);
   const searchTitle = query ? `Search for "${query}" yielded:` : "";
   return (
