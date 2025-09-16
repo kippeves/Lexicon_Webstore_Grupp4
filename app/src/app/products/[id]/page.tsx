@@ -21,6 +21,7 @@ import { linkIcon } from "@/components/footer";
 import { FooterIcon } from "@/components/footer/footer-icon";
 import { Metadata, ResolvingMetadata } from "next";
 import { ContentWrapper } from "@/components/content-wrapper";
+import NotFound from "@/app/not-found";  
 
 type Props = { params: Promise<{ [key: string]: string | undefined }> };
 
@@ -45,10 +46,16 @@ export default async function ProductPage(props: Props) {
   const params = await props.params;
   const productId = params.id ? Number(params.id) : undefined;
 
+  // Return NotFound if productId is not a number
   if (typeof productId !== "number" || isNaN(productId)) {
-    return <div>Invalid product ID</div>;
+    return <NotFound />;
   }
   const product = await getProduct(productId);
+  // Return NotFound if product is not found
+  if (!product || (typeof product === "object" && "message" in product)) {
+    return <NotFound />;
+  }
+
 
   const colorIcon: linkIcon[] = [
     { name: "Paypal", width: 14, height: 16 },
