@@ -19,15 +19,16 @@ export default async function ProductsPage({
   const params = await searchParams;
   const limit = params.limit ? parseInt(params.limit) : undefined;
   const page = params.page ? parseInt(params.page) : undefined;
-  const sort = params.sort ? params.sort : undefined;
-  const order = params.order ? params.order : undefined;
-  const query = params.search ? params.search : undefined;
-
+  const sort = params.sort;
+  const order = params.order;
+  const query = params.search;
+  const brand = params.brand ? params.brand.split(",") : undefined;
   const filter: ProductsFilter = {
-    limit: limit,
+    limit,
     page: page,
     sort,
     order,
+    brand,
     query: query,
   };
   const data = getProductsByFilter(filter);

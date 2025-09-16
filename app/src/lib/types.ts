@@ -4,7 +4,11 @@ export interface ProductsFilter {
   sort?: string;
   order?: string;
   categories?: string[];
+  brand?: string[];
   query?: string;
+}
+export interface SidebarFilterValues {
+  brand?: string[];
 }
 
 export interface ProductList {
@@ -13,6 +17,7 @@ export interface ProductList {
   skip: number
   limit: number
 }
+
 
 export interface ThinProductList {
   products: ThinProduct[]

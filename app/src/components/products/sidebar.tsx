@@ -1,5 +1,7 @@
+import { getFilterValues } from "@/lib/data/products";
 import Link from "next/link";
-import React from "react";
+import React, { Suspense } from "react";
+import FilterArea from "./filter-area";
 
 export default function Sidebar() {
   const categories = [
@@ -8,6 +10,8 @@ export default function Sidebar() {
     "mobile-accessories",
     "laptops",
   ];
+  const filterValues = getFilterValues(["brand"]);
+
   return (
     <aside className="flex flex-col sm:w-60 w-full gap-4">
       <section className="p-4 rounded bg-gray-200 flex flex-col gap-2">
@@ -15,7 +19,10 @@ export default function Sidebar() {
         <ul className="p-2 flex flex-col gap-1 bg-white rounded">
           {categories.map((c, index) => (
             <li key={index}>
-              <Link href={`category/${c}`} className="capitalize text-sm hover:underline">
+              <Link
+                href={`category/${c}`}
+                className="capitalize text-sm hover:underline"
+              >
                 {c}
               </Link>
             </li>
@@ -23,8 +30,10 @@ export default function Sidebar() {
         </ul>
       </section>
       <section className="p-4 rounded bg-gray-200 flex flex-col gap-2">
-        <h2 className="text-xl font-bold uppercase">Categories</h2>
-        <div className="bg-white rounded p-2">All filters go here.</div>
+        <h2 className="text-xl font-bold uppercase">Filters</h2>
+        <Suspense fallback={<div>Loading...</div>}>
+          <FilterArea task={filterValues} />
+        </Suspense>
       </section>
     </aside>
   );

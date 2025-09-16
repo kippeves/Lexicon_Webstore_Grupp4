@@ -1,6 +1,6 @@
-import { Product, ProductsFilter, ThinProduct, ThinProductList } from "../types";
+import { Product, ProductsFilter, SidebarFilterValues, ThinProduct, ThinProductList } from "../types";
 //const baseURI = 'https://dummyjson.com/products';
-const baseURI = 'https://kippeves.se/products';
+const baseURI = 'https://www.kippeves.se/products';
 const thinFields = 'select=title,price,discountPercentage,thumbnail,rating,availabilityStatus';
 
 
@@ -8,6 +8,17 @@ export const getProduct = async (id: number): Promise<Product> => {
     try {
         const response = await fetch(`${baseURI}/${id}`);
         return await response.json() as Product;
+    } catch (e) {
+        throw (e);
+    }
+}
+
+export const getFilterValues = async (values: string[]) => {
+    try {
+        const params = values.join(',');
+        const uri = `${baseURI}/distinct?select=${params}`;
+        const response = await fetch(uri);
+        return await response.json() as SidebarFilterValues;
     } catch (e) {
         throw (e);
     }
@@ -64,33 +75,24 @@ export const getProducts = async ({ limit }: { limit?: number }): Promise<ThinPr
 }
 
 export const getProductsByFilter = async (filter: ProductsFilter): Promise<ThinProductList> => {
-    const defaultCategories = ["smartphones", "tablets", "mobile-accessories", "laptops"];
+    const params = new URLSearchParams();
+    const { limit = 12, page = 1, sort = "id", order = "desc", categories, query, brand } = filter;
+    params.set("limit", limit.toString())
+    params.set("skip", `${(page - 1) * limit}`);
+    params.set("sort", sort);
+    params.set("order", order);
 
-    const { limit = 12, page = 1, sort = "id", order = "desc", categories = [], query } = filter;
-    const paging = `&limit=${limit}&skip=${(page - 1) * limit}`;
-    const ordering = `&sortBy=${sort}&order=${order}`;
-    let categoring = `&categories=${defaultCategories.join()}`;
-    if (categories.length > 0) {
-        categoring = `&categories=${categories.join()}`;
-    }
-    let uri = `${baseURI}?${thinFields}${paging}${ordering}${categoring}`;
-    if (query) {
-        uri = `${baseURI}/search?q=${query}&${thinFields}${paging}${ordering}`;
-    }
+    if (query)
+        params.set("q", query);
+    if (brand)
+        params.set("brand", brand.join())
+    if (categories)
+        params.set("categories", categories.join())
 
-    try {
-        const task = new Promise<ThinProductList>((resolve) => {
-            setTimeout(async () => {
-                const request = await fetch(uri);
-                const list = await request.json() as ThinProductList;
-                resolve(list);
-            }, 250);
-        });
-        return await task;
-
-    } catch (e) {
-        throw (e);
-    }
+    const uri = decodeURIComponent(`${baseURI}?${thinFields}&${params}`);
+    const decoded = decodeURIComponent(uri);
+    const request = await fetch(decoded);
+    return await request.json() as ThinProductList;
 }
 
 // 'https://dummyjson.com/products/category/smartphones/?select=title,price,discountPercentage,thumbnail,rating,availabilityStatus'
