@@ -67,7 +67,7 @@ export default async function ProductPage(props: Props) {
 
   return (
     <article className="flex flex-col gap-4">
-      <ContentWrapper className="flex flex-row gap-4" as="section">
+      <ContentWrapper className="flex flex-col lg:flex-row gap-4" as="section">
         <div className="flex-shrink-0">
           <Image
             src={product.images[0]}
