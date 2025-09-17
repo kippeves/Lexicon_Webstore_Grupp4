@@ -1,7 +1,6 @@
 import { Product, ProductsFilter, SidebarFilterValues, ThinProduct, ThinProductList } from "../types";
 //const baseURI = 'https://dummyjson.com/products';
-//const baseURI = 'https://www.kippeves.se/products';
-const baseURI = 'http://localhost:8888/products'
+const baseURI = 'https://www.kippeves.se/products';
 const thinFields = 'select=title,price,discountPercentage,thumbnail,rating,availabilityStatus';
 
 export const getProduct = async (id: number): Promise<Product> => {
