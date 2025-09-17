@@ -1,8 +1,8 @@
 import { Product, ProductsFilter, SidebarFilterValues, ThinProduct, ThinProductList } from "../types";
 //const baseURI = 'https://dummyjson.com/products';
-const baseURI = 'https://www.kippeves.se/products';
+//const baseURI = 'https://www.kippeves.se/products';
+const baseURI = 'http://localhost:8888/products'
 const thinFields = 'select=title,price,discountPercentage,thumbnail,rating,availabilityStatus';
-
 
 export const getProduct = async (id: number): Promise<Product> => {
     try {
@@ -13,10 +13,40 @@ export const getProduct = async (id: number): Promise<Product> => {
     }
 }
 
-export const getFilterValues = async (values: string[]) => {
+export const convertProductParamsToFilter = ({
+    params,
+}: {
+    params: { [key: string]: string | undefined };
+}) => {
+    const limit = params.limit ? parseInt(params.limit) : undefined;
+    const page = params.page ? parseInt(params.page) : undefined;
+    const sort = params.sort ? params.sort : undefined;
+    const order = params.order ? params.order : undefined;
+    const query = params.search ? params.search : undefined;
+    const categories = params.categories
+        ? params.categories.split(",")
+        : undefined;
+    const brand = params.brand ? params.brand.split(",") : undefined;
+
+    return {
+        limit: limit,
+        page: page,
+        sort,
+        order,
+        query,
+        categories,
+        brand,
+    };
+};
+
+export const getFilterValues = async ({ categories, values = [] }: { categories?: string[], values: string[] }) => {
     try {
-        const params = values.join(',');
-        const uri = `${baseURI}/distinct?select=${params}`;
+        const params = new URLSearchParams();
+        if (categories)
+            params.set("categories", categories.join())
+        params.set("select", values.join());
+
+        const uri = `${baseURI}/distinct?${params}`;
         const response = await fetch(uri);
         return await response.json() as SidebarFilterValues;
     } catch (e) {

@@ -1,36 +1,37 @@
 import { ContentWrapper } from "@/components/content-wrapper";
 import ProductsGrid from "@/components/products-grid";
 import Sidebar from "@/components/products/sidebar";
-import { ProductList } from "@/lib/types";
+import {
+  convertProductParamsToFilter,
+  getProductsByFilter,
+} from "@/lib/data/products";
 import { notFound } from "next/navigation";
 import React from "react";
 
 export default async function CategoryDetailsPage({
   params,
+  searchParams,
 }: {
   params: Promise<{ name: string }>;
+  searchParams: Promise<{ [key: string]: string | undefined }>;
 }) {
   const { name } = await params;
+  const query = await searchParams;
+
   const categories = [
     "all",
     "smartphones",
     "tablets",
     "mobile-accessories",
     "laptops",
-  ]
-  const [, ...values] = categories;
-  if (!values.includes(name)) return notFound();
+  ];
 
-  // TODO: Insert updated getProducts here.
-  const productList = new Promise<ProductList>((resolve) => {
-    const data = {
-      products: [],
-      limit: 0,
-      skip: 0,
-      total: 0,
-    } as ProductList;
-    return resolve(data);
-  });
+  if (!categories.includes(name)) return notFound();
+
+  const filter = convertProductParamsToFilter({ params: query });
+  filter.categories = [name];
+
+  const products = getProductsByFilter(filter);
 
   return (
     <ContentWrapper className="flex flex-col">
@@ -50,8 +51,8 @@ export default async function CategoryDetailsPage({
         </span>
       </p>
       <div className="flex grow  gap-4">
-        <Sidebar />
-        <ProductsGrid className="grow" productsTask={productList} />
+        <Sidebar category={name} />
+        <ProductsGrid className="grow" productsTask={products} />
       </div>
     </ContentWrapper>
   );
