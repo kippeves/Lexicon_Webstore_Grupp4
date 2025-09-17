@@ -36,7 +36,7 @@ export default function HeaderCartButton() {
     return (
         <Sheet>
             <SheetTrigger>
-                <div className="flex flex-row content-center justify-center mr-2 ml-2 px-4 py-2 text-black rounded-md hover:bg-gray-100 hover:underline">
+                <div className="flex flex-row content-center justify-center mr-2 ml-2 px-4 py-2 text-black rounded-md hover:bg-gray-100 hover:underline cursor-pointer">
                     <div className="flex flex-col content-center justify-center mr-4 rounded-full bg-gray-200 p-2">
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -72,7 +72,7 @@ export default function HeaderCartButton() {
                             <div className="flex flex-col content-start justify-self-start mr-4">
                                 <Link href={`/products/${item.product.id}`} className="font-bold hover:underline mb-1">{item.product.title}</Link>
                                 <div className="flex flex-row items-center border rounded-lg px-4 py-2 bg-white shadow-sm">
-                                    <button
+                                    <button className="cursor-pointer"
                                         onClick={() => {
                                             if (item.quantity > 1) {
                                                 handleUpdateItemQuantity(item.product.id, item.quantity - 1);
@@ -82,7 +82,7 @@ export default function HeaderCartButton() {
                                         −
                                     </button>
                                     <span className="mx-4 text-lg font-medium select-none">{item.quantity}</span>
-                                    <button
+                                    <button className="cursor-pointer"
                                         onClick={() => {
                                             if (item.quantity < item.product.stock) {
                                                 handleUpdateItemQuantity(item.product.id, item.quantity + 1);
