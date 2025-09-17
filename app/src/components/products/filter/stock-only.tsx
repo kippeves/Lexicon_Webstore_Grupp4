@@ -2,6 +2,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { CheckedState } from "@radix-ui/react-checkbox";
 import { ReadonlyURLSearchParams } from "next/navigation";
 import React, { useState } from "react";
+import FilterCard from "./filter-card";
 
 export default function StockCheck({
   params,
@@ -18,20 +19,22 @@ export default function StockCheck({
   }
 
   return (
-    <div className="px-5 py-2 flex gap-3 items-center bg-white rounded">
-      <Checkbox
-        id="inStock"
-        className="data-[state=checked]:bg-gray-400 data-[state=checked]:border-none border-gray-400 rounded-none"
-        name="inStock"
-        onCheckedChange={updateValue}
-        checked={stock}
-      />
-      <label
-        className="text-sm inline-block font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 cursor-pointer py-2"
-        htmlFor="inStock"
-      >
-        Only In Stock
-      </label>
-    </div>
+    <FilterCard title="Stock">
+      <div className="flex gap-3 items-center bg-white rounded">
+        <Checkbox
+          id="inStock"
+          className="data-[state=checked]:bg-gray-400 data-[state=checked]:border-none border-gray-400 rounded-none"
+          name="inStock"
+          onCheckedChange={updateValue}
+          checked={stock}
+        />
+        <label
+          className="text-sm inline-block font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 cursor-pointer py-2"
+          htmlFor="inStock"
+        >
+          Only In Stock
+        </label>
+      </div>
+    </FilterCard>
   );
 }

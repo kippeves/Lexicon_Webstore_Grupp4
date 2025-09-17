@@ -5,27 +5,28 @@ import React from "react";
 export default function BrandSelect({
   onSelectedUpdate,
   params,
-  options,
+  values,
 }: {
   onSelectedUpdate: (index: string, value: string[]) => void;
   params: ReadonlyURLSearchParams;
-  options: string[];
+  values: string[];
 }) {
-  const paramsBrand = params.has("brand")
-    ? params.get("brand")!.split(",")
-    : [];
+  
+  const paramsBrand = params.get("brand")?.split(",") ?? [];
 
-  const brandOptions = options.map((b) => ({
-    id: b.toLowerCase(),
-    label: b,
+  const options = values?.map((item) => ({
+    id: item.toLowerCase(),
+    label: item,
   }));
 
   return (
-    <MultiSelectList
-      title="Brand"
-      selected={paramsBrand}
-      items={brandOptions}
-      onSelectionChange={(value) => onSelectedUpdate("brand", value)}
-    />
+    options && (
+      <MultiSelectList
+        title="Brand"
+        selected={paramsBrand}
+        items={options}
+        onSelectionChange={(value) => onSelectedUpdate("brand", value)}
+      />
+    )
   );
 }

@@ -11,31 +11,30 @@ export default function FilterArea({
 }: {
   task: Promise<SidebarFilterValues>;
 }) {
-  const { brand } = use(task);
   const path = usePathname();
   const params = useSearchParams();
   const { replace } = useRouter();
 
   const updateRoute = (index: string, value: string | string[] | undefined) => {
     const newParams = new URLSearchParams(params);
-    if (value?.length)
-      newParams.set(
-        index,
-        Array.isArray(value) ? value.join(",").toLowerCase() : value
-      );
-    else newParams.delete(index);
-    replace(decodeURIComponent(`${path}?${newParams}`));
+    if (value?.length) {
+      const exportValue = Array.isArray(value)
+        ? value.join(",").toLowerCase()
+        : value;
+      newParams.set(index, exportValue);
+    } else newParams.delete(index);
+    replace(`${path}?${newParams}`);
   };
+
+  const { brand } = use(task);
 
   return (
     <>
-      {brand && (
-        <BrandSelect
-          params={params}
-          options={brand}
-          onSelectedUpdate={updateRoute}
-        />
-      )}
+      <BrandSelect
+        params={params}
+        values={brand}
+        onSelectedUpdate={updateRoute}
+      />
       <StockCheck params={params} onCheckedChange={updateRoute} />
     </>
   );
