@@ -34,6 +34,7 @@ export interface ThinProduct {
   thumbnail: string
   rating: number
   availabilityStatus: string
+  stock: number
 }
 
 export interface Product {
