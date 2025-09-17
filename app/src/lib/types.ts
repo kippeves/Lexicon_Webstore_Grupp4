@@ -9,6 +9,7 @@ export interface ProductsFilter {
 }
 export interface SidebarFilterValues {
   brand?: string[];
+  price?: number[];
 }
 
 export interface ProductList {

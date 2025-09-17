@@ -10,7 +10,7 @@ export default function Sidebar() {
     "mobile-accessories",
     "laptops",
   ];
-  const filterValues = getFilterValues(["brand"]);
+  const filterValues = getFilterValues(["brand", "price"]);
 
   return (
     <aside className="flex flex-col sm:w-60 w-full gap-4">
