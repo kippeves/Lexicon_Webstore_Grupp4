@@ -1,4 +1,4 @@
-import { Product, ProductsFilter, SearchParamsInput, SidebarFilterValues, ThinProduct, ThinProductList } from "../types";
+import { Product, ProductsFilter, SearchParamsString, SidebarFilterValues, ThinProduct, ThinProductList } from "../types";
 //const baseURI = 'https://dummyjson.com/products';
 const baseURI = 'https://www.kippeves.se/products';
 const thinFields = 'select=title,price,discountPercentage,thumbnail,rating,availabilityStatus';
@@ -12,7 +12,7 @@ export const getProduct = async (id: number): Promise<Product> => {
     }
 }
 
-export function convertProductParamsToFilter({ params }: { params: SearchParamsInput }): ProductsFilter {
+export function convertProductParamsToFilter({ params }: { params: SearchParamsString }): ProductsFilter {
     return {
         ...params,
         limit: params.limit ? parseInt(params.limit) : undefined,

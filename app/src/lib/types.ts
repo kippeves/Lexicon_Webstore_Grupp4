@@ -1,4 +1,4 @@
-export interface SearchParamsInput { [key: string]: string | undefined };
+export interface SearchParamsString { [key: string]: string | undefined };
 
 export interface ProductsFilter {
   limit?: number;
