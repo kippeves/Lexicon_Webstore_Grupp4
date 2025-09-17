@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { Checkbox } from "@/components/ui/checkbox";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardTitle } from "@/components/ui/card";
 
 interface MultiSelectItem {
   id: string;
@@ -43,17 +43,15 @@ export function MultiSelectList({
 
   return (
     <Card
-      className={`${className} gap-2 border-0 px-2 rounded-none shadow-none`}
+      className={`${className} gap-2 border-0 p-3 rounded-none shadow-none`}
     >
-      <CardHeader className="px-0">
-        <CardTitle className="text-lg font-semibold">{title}</CardTitle>
-      </CardHeader>
+      <CardTitle className="font-bold py-2">{title}</CardTitle>
       <CardContent className="p-0">
-        <div className="flex flex-col space-y-1 gap-1 ">
+        <div className="flex flex-col gap-1 ">
           {items.map((item) => (
             <div
               key={item.id}
-              className="flex border-0 items-center space-x-3 rounded-lg hover:bg-accent/50 transition-colors"
+              className="flex ps-2 border-0 items-center space-x-3 rounded-lg hover:bg-accent/50 transition-colors"
               onClick={(e) => handleItemToggle(item.id, e)}
             >
               <Checkbox

@@ -6,6 +6,7 @@ export interface ProductsFilter {
   categories?: string[];
   brand?: string[];
   query?: string;
+  stock?: string;
 }
 export interface SidebarFilterValues {
   brand?: string[];
