@@ -19,14 +19,14 @@ export default async function ProductsPage({
   searchParams: Promise<{ [key: string]: string | undefined }>;
 }) {
   const params = await searchParams;
-
   const filter = convertProductParamsToFilter({ params });
-
   const data = getProductsByFilter(filter);
-  const searchTitle = filter.query
-    ? `Search for "${filter.query}" yielded:`
+
+  const searchTitle = filter.search
+    ? `Search for "${filter.search}" yielded:`
     : "";
-  return (
+
+    return (
     <ContentWrapper className="flex flex-col gap-4 sm:flex-row" as="article">
       <Sidebar />
       <section className="grow ">
