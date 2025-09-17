@@ -35,6 +35,7 @@ export interface ThinProduct {
   thumbnail: string
   rating: number
   availabilityStatus: string
+  stock: number
 }
 
 export interface Product {
@@ -93,3 +94,14 @@ export interface ShoppingCartItem {
   product: ThinProduct
   quantity: number
 }
+
+export const contactTypes = [
+  { value: "support", label: "Support" },
+  { value: "info", label: "Information" },
+  { value: "complaints", label: "Complaints" },
+] as const;
+
+export const contactTypeValues = contactTypes.map((t) => t.value) as [
+  (typeof contactTypes)[number]["value"],
+  ...(typeof contactTypes)[number]["value"][]
+];
