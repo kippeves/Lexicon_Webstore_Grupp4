@@ -15,11 +15,11 @@ export default function FilterCard({
   return (
     <AccordionItem
       value={id!}
-      className={`${className} bg-white gap-2 border-0 px-2 py-0 rounded shadow-none`}
+      className={`${className}`}
       {...props}
     >
       <AccordionTrigger className="px-2 font-bold">{title}</AccordionTrigger>
-      <AccordionContent className="px-2 pb-3">{children}</AccordionContent>
+      <AccordionContent className="px-1">{children}</AccordionContent>
     </AccordionItem>
   );
 }

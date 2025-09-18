@@ -22,14 +22,14 @@ export default function StockCheck({
   return (
     <FilterCard id="stock" title="Stock">
       <div
-        className="flex border-0 items-center space-x-3 rounded-lg hover:bg-accent/50 transition-colors"
+        className="flex px-2 border-0 items-center space-x-3 rounded-lg hover:bg-accent/50 transition-colors"
         onClick={() => flipState()}
       >
         <Checkbox
           id="inStock"
           name="inStock"
           text="Show items in stock only"
-          className="data-[state=checked]:bg-gray-400 data-[state=checked]:border-none border-gray-400 rounded-none"
+          className="data-[state=checked]:bg-[var(--primary-green)] data-[state=checked]:border-none border-[var(--primary-green)] rounded-none"
           checked={stock}
         />
         <span className="text-sm inline-block font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 cursor-pointer py-2">

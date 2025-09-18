@@ -54,28 +54,28 @@ export default function FilterArea({
   const { brand, price } = use(task);
 
   return (
-    <>
-      <Accordion type="single" defaultValue="filter" collapsible>
-        <AccordionItem value="filter" >
-          <AccordionTrigger className="uppercase text-xl font-bold py-1 pb-3">Filter</AccordionTrigger>
-          <AccordionContent className="py-0">
-            <Accordion type="multiple" className="flex flex-col gap-1">
-              <NameSearch params={params} onValueChange={updateRoute} />
-              <BrandSelect
-                params={params}
-                values={brand}
-                onSelectedUpdate={updateRoute}
-              />
-              <StockCheck params={params} onCheckedChange={updateRoute} />
-              <PriceSlider
-                params={params}
-                values={price}
-                onRangeUpdate={updateRoute}
-              />
-            </Accordion>
-          </AccordionContent>
-        </AccordionItem>
-      </Accordion>
-    </>
+    <Accordion
+      type="single"
+      defaultValue="filter"
+    >
+      <AccordionItem value="filter">
+        <AccordionContent className="py-0">
+          <Accordion type="multiple" className="flex flex-col gap-1">
+            <NameSearch params={params} onValueChange={updateRoute} />
+            <BrandSelect
+              params={params}
+              values={brand}
+              onSelectedUpdate={updateRoute}
+            />
+            <StockCheck params={params} onCheckedChange={updateRoute} />
+            <PriceSlider
+              params={params}
+              values={price}
+              onRangeUpdate={updateRoute}
+            />
+          </Accordion>
+        </AccordionContent>
+      </AccordionItem>
+    </Accordion>
   );
 }
