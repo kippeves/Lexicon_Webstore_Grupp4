@@ -35,8 +35,8 @@ export default async function Sidebar({ category }: { category?: string }) {
         </ul>
       </section>
       <section className="p-4 rounded bg-gray-200 flex flex-col gap-2">
-        <h2 className="text-xl font-bold uppercase">Filters</h2>
-        <Suspense fallback={<div>Loading...</div>}>
+        <h2 className="sr-only">Filters</h2>
+        <Suspense>
           <FilterArea task={filterValues} />
         </Suspense>
       </section>
