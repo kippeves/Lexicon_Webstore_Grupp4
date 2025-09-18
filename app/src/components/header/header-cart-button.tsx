@@ -44,7 +44,7 @@ export default function HeaderCartButton() {
 
                     <div className="flex flex-col content-center justify-center text-left">
                         <span className="text-sm text-gray-500">Cart</span>
-                        <span className="font-bold">$0</span>
+                        <span className="font-bold">${formattedTotalPrice}</span>
                     </div>
                 </div>
             </SheetTrigger>
