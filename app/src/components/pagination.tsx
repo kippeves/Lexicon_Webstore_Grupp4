@@ -23,6 +23,10 @@ export function PaginationFilter({ page = 1, limit = limitList[0], total = 0 }: 
         if (isNaN(num)) {
             return;
         }
+        
+        if(params.has("page"))
+            params.delete("page");
+
         if (limitList.includes(num)) {
             params.set("limit", value);
         } else if (params.has("limit")) {
