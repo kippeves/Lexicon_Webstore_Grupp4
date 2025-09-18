@@ -10,7 +10,7 @@ export default function PriceSlider({
   params,
   values,
 }: {
-  onRangeUpdate: (index: string, value: string[]) => void;
+  onRangeUpdate: (index: string[], value: string[]) => void;
   params: ReadonlyURLSearchParams;
   values: number[];
   title?: string;
@@ -21,18 +21,17 @@ export default function PriceSlider({
   const rangeMin = prices ? Math.min(...prices) : 0;
   const rangeMax = prices ? Math.max(...prices) : 0;
 
-  const paramsPrice = params.has("price") ? params.get("price")!.split(",") : [];
-  const selectedMin = paramsPrice[0] ? Number(paramsPrice[0]) : 0;
-  const selectedMax = paramsPrice[1] ? Number(paramsPrice[1]) : 0;
+  const selectedMin = params.has("priceMin") ? Number(params.get("priceMin")) : rangeMin;
+  const selectedMax = params.has("priceMax") ? Number(params.get("priceMax")) : rangeMax;
 
-  const [selected, setSelected] = useState([selectedMin, selectedMax]);
+  const [current, setCurrent] = useState([selectedMin, selectedMax]);
 
   const handleAdjust = (e: number[]) => {
-    setSelected(e);
+    setCurrent(e);
   }
 
   const handleSelected = (e: number[]) => {
-    onRangeUpdate?.("price", e.map((val) => val.toString()));
+    onRangeUpdate?.(["priceMin", "priceMax"], e.map(i => i.toString()));
   }
 
   return (
@@ -48,8 +47,8 @@ export default function PriceSlider({
           onValueCommit={(e) => handleSelected(e)}
         />
         <div className="flex flex-row mt-2 justify-between">
-          <div>{selected[0]}</div>
-          <div>{selected[1]}</div>
+          <div>{current[0]}</div>
+          <div>{current[1]}</div>
         </div>
       </div>
     </FilterCard>
