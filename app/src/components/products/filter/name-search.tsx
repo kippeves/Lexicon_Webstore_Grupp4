@@ -27,7 +27,8 @@ export default function NameSearch({
   );
 
   function getSearchValue() {
-    setSearch(ref.current?.value);
+    const value = ref.current?.value;
+    setSearch(value);
   }
 
   const ref = useRef<HTMLInputElement>(null);
