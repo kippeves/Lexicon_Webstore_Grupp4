@@ -13,15 +13,15 @@ import { redirect, RedirectType } from "next/navigation";
 
 async function SearchBar() {
   return (
-    <div
-      className={`rounded-b p-4 bg-[var(--primary-green)] flex items-center justify-evenly`}
-    >
-      <SearchForm />
-      <ul className="grow text-sm font-bold text-white justify-evenly hidden md:flex">
-        <li className="hidden xl:flex">Free shipping anywhere</li>
-        <li className="hidden lg:flex">100% Secure!</li>
-        <li className="hidden md:flex">30 Days Money Back Guarantee</li>
-      </ul>
+    <div className="full-width bg-primary-green">
+      <div className={`rounded-b py-4  flex items-center justify-evenly`}>
+        <SearchForm />
+        <ul className="grow text-sm font-semibold text-white justify-evenly hidden md:flex">
+          <li className="hidden xl:flex">Free shipping worldwide</li>
+          <li className="hidden lg:flex">Protected payments</li>
+          <li className="hidden md:flex">Easy 30-day return policy</li>
+        </ul>
+      </div>
     </div>
   );
 }
@@ -42,8 +42,11 @@ const SearchForm = () => {
     const name = data.get("productName");
 
     if (name) {
-      const category = (type) ? type.toString() : "";
-      redirect(`/products?search=${name.toString()}&categories=${category}`, RedirectType.push);
+      const category = type ? type.toString() : "";
+      redirect(
+        `/products?search=${name.toString()}&categories=${category}`,
+        RedirectType.push
+      );
     }
   }
   return (
@@ -75,12 +78,12 @@ const SearchForm = () => {
       <Input
         type="search"
         name="productName"
-        className="outline-0 focus-visible:ring-0 border-0"
+        className="outline-0 focus-visible:ring-0 border-0 text-sm"
         placeholder="Search Anything..."
       />
       <Button
         variant={"ghost"}
-        className="hover:bg-[var(--primary-green)] hover:text-white rounded-2xl h-7 cursor-pointer"
+        className="hover:bg-primary-green hover:text-white rounded-2xl h-7 cursor-pointer"
         type="submit"
       >
         <Search />
