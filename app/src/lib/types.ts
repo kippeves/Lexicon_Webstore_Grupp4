@@ -1,3 +1,5 @@
+export interface SearchParamsString { [key: string]: string | undefined };
+
 export interface ProductsFilter {
   limit?: number;
   page?: number;
@@ -5,10 +7,11 @@ export interface ProductsFilter {
   order?: string;
   categories?: string[];
   brand?: string[];
-  query?: string;
+  search?: string;
+  stock?: string;
 }
 export interface SidebarFilterValues {
-  brand?: string[];
+  brand: string[];
 }
 
 export interface ProductList {

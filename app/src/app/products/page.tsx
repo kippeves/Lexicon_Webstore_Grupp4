@@ -5,6 +5,7 @@ import {
   convertProductParamsToFilter,
   getProductsByFilter,
 } from "@/lib/data/products";
+import { SearchParamsString } from "@/lib/types";
 import { Metadata } from "next";
 import React, { Suspense } from "react";
 
@@ -16,16 +17,16 @@ export const metadata: Metadata = {
 export default async function ProductsPage({
   searchParams,
 }: {
-  searchParams: Promise<{ [key: string]: string | undefined }>;
+  searchParams: Promise<SearchParamsString>;
 }) {
   const params = await searchParams;
-
   const filter = convertProductParamsToFilter({ params });
-
   const data = getProductsByFilter(filter);
-  const searchTitle = filter.query
-    ? `Search for "${filter.query}" yielded:`
+
+  const searchTitle = filter.search
+    ? `Search for "${filter.search}" yielded:`
     : "";
+
   return (
     <ContentWrapper className="flex flex-col gap-4 sm:flex-row" as="article">
       <Sidebar />
