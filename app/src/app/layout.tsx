@@ -6,8 +6,8 @@ import Header from "@/components/header";
 import Footer from "@/components/footer";
 import SearchBar from "@/components/search-bar";
 import { Toaster } from "sonner"
-import { ClerkProvider } from "@clerk/nextjs";
-import { CartProvider } from "use-shopping-cart";
+import { ClientProviders } from "@/components/providers/ClientProviders";
+
 
 const interSans = Inter({
   subsets: ["latin"],
@@ -25,33 +25,18 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <ClerkProvider appearance={{
-      cssLayerName: 'clerk',
-    }}>
-      <html lang="en">
-        <body className={`${interSans.className} antialiased bg-[#e2e4eb]`}>
-          <CartProvider
-            mode="payment"
-            cartMode="client-only"
-            // Connects to your Stripe account
-            stripe={process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!}
-            // Redirected here after successful payments
-            successUrl={`${process.env.NEXT_PUBLIC_URL}/success`}
-            // Redirected here when you click back on Stripe Checkout
-            cancelUrl={`${process.env.NEXT_PUBLIC_URL}/?success=false`}
-            currency="USD"
-            // Enables local storage
-            shouldPersist={true}>
-            <Toaster position="bottom-center" richColors />
-            <ContentGrid className={"min-h-dvh grid-rows-[auto_auto_1fr_auto]"}>
-              <Header />
-              <SearchBar />
-              <main className="flex flex-col gap-4 my-4">{children}</main>
-              <Footer />
-            </ContentGrid>
-          </CartProvider>
-        </body>
-      </html>
-    </ClerkProvider>
+    <html lang="en">
+      <body className={`${interSans.className} antialiased bg-[#e2e4eb]`}>
+        <ClientProviders>
+          <Toaster position="bottom-center" richColors />
+          <ContentGrid className={"min-h-dvh grid-rows-[auto_auto_1fr_auto]"}>
+            <Header />
+            <SearchBar />
+            <main className="flex flex-col gap-4 my-4">{children}</main>
+            <Footer />
+          </ContentGrid>
+        </ClientProviders>
+      </body>
+    </html>
   );
 }

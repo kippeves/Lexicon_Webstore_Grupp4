@@ -52,9 +52,9 @@ export default function HeaderCartButton() {
                 <SheetHeader>
                     <SheetTitle>Your Cart</SheetTitle>
                 </SheetHeader>
-                <SheetDescription>
+                <SheetDescription className="text-center mt-8 text-gray-500">
                     {cartCount === 0 ?
-                        (<p className="text-center mt-8 text-gray-500">Your cart is currently empty.</p>)
+                        ("Your cart is currently empty.")
                         : null
                     }
                 </SheetDescription>
