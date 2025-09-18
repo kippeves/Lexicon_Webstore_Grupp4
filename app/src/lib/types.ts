@@ -93,7 +93,7 @@ export interface ShoppingCart {
 }
 
 export interface ShoppingCartItem {
-  product: ThinProduct
+  product: Product
   quantity: number
 }
 

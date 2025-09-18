@@ -1,34 +1,36 @@
 "use client"
 import { toast } from "sonner"
-import useLocalStorage from "@/lib/data/local-storage"
-import { Product, ShoppingCartItem } from "@/lib/types"
+import { Product } from "@/lib/types"
 import { useState } from "react";
+import { useShoppingCart } from "use-shopping-cart";
 
 export default function AddToCartButton({ product }: { product: Product }) {
+    const { addItem } = useShoppingCart();
 
-    const [cart, setCart] = useLocalStorage<ShoppingCartItem[]>("shopping-cart", []);
     const [quantity, setQuantity] = useState(1);
-    const [item, setItem] = useState<ShoppingCartItem>({ product, quantity: 1 });
+
 
     const handleAddToCart = () => {
-        const existingProduct = cart.find(item => item.product.id === product.id);
-        if (existingProduct) {
-            setCart(cart.map(item => item.product.id === product.id ? { ...item, quantity: item.quantity + quantity } : item));
-        } else {
-            setCart([...cart, { ...item }]);
-        }
-        toast.success(`${product.title} added to cart!`);
-    };
-
+        addItem(
+            {
+                id: product.id,
+                name: product.title, // adjust to your Product type
+                price: product.price * 100, // must be in cents!
+                currency: "USD",
+                image: product.thumbnail,
+                description: product.description,
+                sku: product.sku
+            },
+            { count: quantity }
+        )
+        toast.success(`${product.title} added to cart!`)
+    }
     return (
         <div className="flex flex-row justify-start items-center gap-4 mt-2 mb-2">
             <div className="flex flex-row items-center border rounded-lg px-4 py-2 bg-white shadow-sm">
                 <button
                     onClick={() => {
-                        if (quantity > 1) {
-                            setQuantity(quantity - 1);
-                            setItem({ product, quantity: quantity - 1 });
-                        }
+                        setQuantity((q) => Math.max(1, q - 1));
                     }}
                 >
                     −
@@ -36,20 +38,16 @@ export default function AddToCartButton({ product }: { product: Product }) {
                 <span className="mx-4 text-lg font-medium select-none">{quantity}</span>
                 <button
                     onClick={() => {
-                        if (quantity < product.stock) {
-                            setQuantity(quantity + 1);
-                            setItem({ product, quantity: quantity + 1 });
-                        }
+                        setQuantity((q) => Math.min(product.stock, q + 1))
                     }}
                 >
                     +
                 </button>
             </div>
             <button
-                onClick={() => {
-                    setItem({ product, quantity });
-                    handleAddToCart();
-                }}
+                onClick={
+                    handleAddToCart
+                }
                 className="bg-[var(--primary-green)] hover:bg-green-700 text-white rounded-xl px-12 py-4 text-base font-medium cursor-pointer flex items-center justify-center gap-2 transition-colors"
             >
                 <svg
