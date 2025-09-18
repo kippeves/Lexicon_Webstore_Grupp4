@@ -1,4 +1,5 @@
 import { ContentWrapper } from "@/components/content-wrapper";
+import Loader from "@/components/loader";
 import ProductsGrid from "@/components/products-grid";
 import Sidebar from "@/components/products/sidebar";
 import {
@@ -6,7 +7,7 @@ import {
   getProductsByFilter,
 } from "@/lib/data/products";
 import { notFound } from "next/navigation";
-import React from "react";
+import React, { Suspense } from "react";
 
 export default async function CategoryDetailsPage({
   params,
@@ -52,7 +53,9 @@ export default async function CategoryDetailsPage({
       </p>
       <div className="flex grow  gap-4">
         <Sidebar category={name} />
-        <ProductsGrid className="grow" productsTask={products} />
+        <Suspense fallback={<Loader />}>
+          <ProductsGrid productsTask={products} />
+        </Suspense>
       </div>
     </ContentWrapper>
   );
