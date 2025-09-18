@@ -52,17 +52,15 @@ export function MultiSelectList({
           <Checkbox
             id={item.id}
             name={item.id}
+            text={item.label}
             checked={selectedItems.includes(item.id)}
             onCheckedChange={() => handleItemToggle(item.id)}
             color="#200"
             className="data-[state=checked]:bg-gray-400 data-[state=checked]:border-none border-gray-400 rounded-none"
           />
-          <label
-            htmlFor={item.id}
-            className="text-sm inline-block font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 cursor-pointer py-2"
-          >
+          <span className="text-sm inline-block font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 cursor-pointer py-2">
             {item.label}
-          </label>
+          </span>
         </div>
       ))}
     </FilterCard>
