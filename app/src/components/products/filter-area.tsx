@@ -39,16 +39,16 @@ export default function FilterArea({
           newParams.delete(index[ind]);
         }
       });
-    } else if (value?.length) {
-      if (index !== "page" && newParams.has("page")) newParams.delete("page");
+    } else {
       if (value?.length) {
         const exportValue = Array.isArray(value)
           ? value.join(",").toLowerCase()
           : value;
-        newParams.set(index, exportValue);
-      } else newParams.delete(index);
-      replace(`${path}?${newParams}`);
+        newParams.set(index.toString(), exportValue);
+      } else newParams.delete(index.toString());
     }
+    if (index !== "page" && newParams.has("page")) newParams.delete("page");
+    replace(`${path}?${newParams}`);
   };
 
   const { brand, price } = use(task);
