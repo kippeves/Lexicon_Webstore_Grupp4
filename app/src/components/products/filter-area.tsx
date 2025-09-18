@@ -5,6 +5,7 @@ import { use } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import StockCheck from "./filter/stock-only";
 import BrandSelect from "./filter/brand-select";
+import PriceSlider from "./filter/price-slider";
 import NameSearch from "./filter/name-search";
 
 export default function FilterArea({
@@ -16,9 +17,20 @@ export default function FilterArea({
   const params = useSearchParams();
   const { replace } = useRouter();
 
-  const updateRoute = (index: string, value: string | string[] | undefined) => {
+  const updateRoute = (index: string | string[], value: string | string[] | undefined) => {
     const newParams = new URLSearchParams(params);
-    if (value?.length) {
+    if (Array.isArray(index)) {
+      // Set multiple at once
+      const vals = (Array.isArray(value)) ? value : [value];
+      vals.map((val, ind) => {
+        if (val?.length) {
+          newParams.set(index[ind], val);
+        } else {
+          newParams.delete(index[ind]);
+        }
+      });
+    }
+    else if (value?.length) {
       const exportValue = Array.isArray(value)
         ? value.join(",").toLowerCase()
         : value;
@@ -27,7 +39,7 @@ export default function FilterArea({
     replace(`${path}?${newParams}`);
   };
 
-  const { brand } = use(task);
+  const { brand, price } = use(task);
 
   return (
     <>
@@ -38,6 +50,11 @@ export default function FilterArea({
         onSelectedUpdate={updateRoute}
       />
       <StockCheck params={params} onCheckedChange={updateRoute} />
+      <PriceSlider
+        params={params}
+        values={price}
+        onRangeUpdate={updateRoute}
+      />
     </>
   );
 }
