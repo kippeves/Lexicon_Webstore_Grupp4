@@ -42,7 +42,7 @@ export function MultiSelectList({
   };
 
   return (
-    <FilterCard className={className} title={title}>
+    <FilterCard id="brand" className={className} title={title}>
       {items.map((item) => (
         <div
           key={item.id}

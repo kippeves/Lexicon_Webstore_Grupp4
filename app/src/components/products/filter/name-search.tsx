@@ -40,7 +40,7 @@ export default function NameSearch({
   }, [onValueChange, previousValue, search]);
 
   return (
-    <FilterCard title="Search">
+    <FilterCard id="search" title="Search">
       <div className="flex focus-within:outline-3 rounded-md">
         <Input
           defaultValue={search}

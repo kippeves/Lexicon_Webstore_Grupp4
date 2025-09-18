@@ -20,7 +20,7 @@ export default function StockCheck({
   }, [previousValue, onCheckedChange, inStock]);
 
   return (
-    <FilterCard title="Stock">
+    <FilterCard id="stock" title="Stock">
       <div
         className="flex border-0 items-center space-x-3 rounded-lg hover:bg-accent/50 transition-colors"
         onClick={flip}
