@@ -19,6 +19,8 @@ export function convertProductParamsToFilter({ params }: { params: SearchParamsS
         page: params.page ? parseInt(params.page) : undefined,
         categories: params.categories?.split(','),
         brand: params.brand?.split(","),
+        priceMin: params.priceMin ? parseInt(params.priceMin) : undefined,
+        priceMax: params.priceMax ? parseInt(params.priceMax) : undefined
     };
 };
 
@@ -89,7 +91,7 @@ export const getProducts = async ({ limit }: { limit?: number }): Promise<ThinPr
 
 export const getProductsByFilter = async (filter: ProductsFilter): Promise<ThinProductList> => {
     const params = new URLSearchParams();
-    const { limit = 12, page = 1, sort = "id", order = "desc", categories, search, brand, stock } = filter;
+    const { limit = 12, page = 1, sort = "id", order = "desc", categories, search, brand, stock, priceMin, priceMax } = filter;
     params.set("limit", limit.toString())
     params.set("skip", `${(page - 1) * limit}`);
     params.set("sort", sort);
@@ -97,6 +99,10 @@ export const getProductsByFilter = async (filter: ProductsFilter): Promise<ThinP
 
     if (stock)
         params.set("inStock", '1');
+    if (priceMin)
+        params.set("priceMin", priceMin.toString());
+    if (priceMax)
+        params.set("priceMax", priceMax.toString());
     if (search)
         params.set("q", search);
     if (brand)
