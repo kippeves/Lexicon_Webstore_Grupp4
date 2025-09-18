@@ -28,20 +28,20 @@ export default function RootLayout({
     <ClerkProvider appearance={{
       cssLayerName: 'clerk',
     }}>
-      <CartProvider
-        mode="payment"
-        cartMode="client-only"
-        // Connects to your Stripe account
-        stripe={process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!}
-        // Redirected here after successful payments
-        successUrl={`${process.env.NEXT_PUBLIC_URL}/success`}
-        // Redirected here when you click back on Stripe Checkout
-        cancelUrl={`${process.env.NEXT_PUBLIC_URL}/?success=false`}
-        currency="USD"
-        // Enables local storage
-        shouldPersist={true}>
-        <html lang="en">
-          <body className={`${interSans.className} antialiased bg-[#e2e4eb]`}>
+      <html lang="en">
+        <body className={`${interSans.className} antialiased bg-[#e2e4eb]`}>
+          <CartProvider
+            mode="payment"
+            cartMode="client-only"
+            // Connects to your Stripe account
+            stripe={process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!}
+            // Redirected here after successful payments
+            successUrl={`${process.env.NEXT_PUBLIC_URL}/success`}
+            // Redirected here when you click back on Stripe Checkout
+            cancelUrl={`${process.env.NEXT_PUBLIC_URL}/?success=false`}
+            currency="USD"
+            // Enables local storage
+            shouldPersist={true}>
             <Toaster position="bottom-center" richColors />
             <ContentGrid className={"min-h-dvh grid-rows-[auto_auto_1fr_auto]"}>
               <Header />
@@ -49,9 +49,9 @@ export default function RootLayout({
               <main className="flex flex-col gap-4 my-4">{children}</main>
               <Footer />
             </ContentGrid>
-          </body>
-        </html>
-      </CartProvider>
+          </CartProvider>
+        </body>
+      </html>
     </ClerkProvider>
   );
 }

@@ -6,9 +6,7 @@ import { useShoppingCart } from "use-shopping-cart";
 
 export default function AddToCartButton({ product }: { product: Product }) {
     const { addItem } = useShoppingCart();
-
     const [quantity, setQuantity] = useState(1);
-
 
     const handleAddToCart = () => {
         addItem(
