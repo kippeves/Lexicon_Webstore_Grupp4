@@ -13,7 +13,7 @@ export default async function Sidebar({ category }: { category?: string }) {
   ];
 
   const filterValues = getFilterValues({
-    values: ["brand"],
+    values: ["brand", "price"],
     categories: category ? [category] : undefined,
   });
 

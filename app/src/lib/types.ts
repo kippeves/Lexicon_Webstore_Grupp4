@@ -9,9 +9,12 @@ export interface ProductsFilter {
   brand?: string[];
   search?: string;
   stock?: string;
+  priceMin?: number;
+  priceMax?: number;
 }
 export interface SidebarFilterValues {
   brand: string[];
+  price: number[];
 }
 
 export interface ProductList {
@@ -107,3 +110,12 @@ export const contactTypeValues = contactTypes.map((t) => t.value) as [
   (typeof contactTypes)[number]["value"],
   ...(typeof contactTypes)[number]["value"][]
 ];
+
+export interface NavItem {
+  label: string;
+  slug: string;
+  subcategories?: {
+    label: string;
+    slug: string;
+  }[];
+};
