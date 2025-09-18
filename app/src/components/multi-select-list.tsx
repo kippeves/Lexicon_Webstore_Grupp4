@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { Checkbox } from "@/components/ui/checkbox";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import FilterCard from "./products/filter/filter-card";
 
 interface MultiSelectItem {
   id: string;
@@ -42,38 +42,29 @@ export function MultiSelectList({
   };
 
   return (
-    <Card
-      className={`${className} gap-2 border-0 px-2 rounded-none shadow-none`}
-    >
-      <CardHeader className="px-0">
-        <CardTitle className="text-lg font-semibold">{title}</CardTitle>
-      </CardHeader>
-      <CardContent className="p-0">
-        <div className="flex flex-col space-y-1 gap-1 ">
-          {items.map((item) => (
-            <div
-              key={item.id}
-              className="flex border-0 items-center space-x-3 rounded-lg hover:bg-accent/50 transition-colors"
-              onClick={(e) => handleItemToggle(item.id, e)}
-            >
-              <Checkbox
-                id={item.id}
-                name={item.id}
-                checked={selectedItems.includes(item.id)}
-                onCheckedChange={() => handleItemToggle(item.id)}
-                color="#200"
-                className="data-[state=checked]:bg-gray-400 data-[state=checked]:border-none border-gray-400 rounded-none"
-              />
-              <label
-                htmlFor={item.id}
-                className="text-sm inline-block font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 cursor-pointer py-2"
-              >
-                {item.label}
-              </label>
-            </div>
-          ))}
+    <FilterCard className={className} title={title}>
+      {items.map((item) => (
+        <div
+          key={item.id}
+          className="flex border-0 items-center space-x-3 rounded-lg hover:bg-accent/50 transition-colors"
+          onClick={(e) => handleItemToggle(item.id, e)}
+        >
+          <Checkbox
+            id={item.id}
+            name={item.id}
+            checked={selectedItems.includes(item.id)}
+            onCheckedChange={() => handleItemToggle(item.id)}
+            color="#200"
+            className="data-[state=checked]:bg-gray-400 data-[state=checked]:border-none border-gray-400 rounded-none"
+          />
+          <label
+            htmlFor={item.id}
+            className="text-sm inline-block font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 cursor-pointer py-2"
+          >
+            {item.label}
+          </label>
         </div>
-      </CardContent>
-    </Card>
+      ))}
+    </FilterCard>
   );
 }

@@ -2,55 +2,40 @@
 
 import { SidebarFilterValues } from "@/lib/types";
 import { use } from "react";
-import { MultiSelectList } from "../multi-select-list";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import StockCheck from "./filter/stock-only";
+import BrandSelect from "./filter/brand-select";
 
 export default function FilterArea({
   task,
 }: {
   task: Promise<SidebarFilterValues>;
 }) {
-  const { replace } = useRouter();
   const path = usePathname();
   const params = useSearchParams();
-  const { brand } = use(task);
+  const { replace } = useRouter();
 
-  const paramsBrand = params.has("brand")
-    ? params.get("brand")!.split(",")
-    : [];
-
-  const updateRoute = ({
-    index,
-    value,
-  }: {
-    index: string;
-    value: string | string[];
-  }) => {
+  const updateRoute = (index: string, value: string | string[] | undefined) => {
     const newParams = new URLSearchParams(params);
-    if (value.length)
-      newParams.set(
-        index,
-        Array.isArray(value) ? value.join(",").toLowerCase() : value
-      );
-    else newParams.delete("brand");
-    replace(decodeURIComponent(`${path}?${newParams}`));
+    if (value?.length) {
+      const exportValue = Array.isArray(value)
+        ? value.join(",").toLowerCase()
+        : value;
+      newParams.set(index, exportValue);
+    } else newParams.delete(index);
+    replace(`${path}?${newParams}`);
   };
 
-  const brandOptions = brand?.map((b) => ({
-    id: b.toLowerCase(),
-    label: b,
-  }));
+  const { brand } = use(task);
 
   return (
     <>
-      {brandOptions && (
-        <MultiSelectList
-          title="Filter by brand"
-          selected={paramsBrand}
-          items={brandOptions}
-          onSelectionChange={(value) => updateRoute({ index: "brand", value })}
-        />
-      )}
+      <BrandSelect
+        params={params}
+        values={brand}
+        onSelectedUpdate={updateRoute}
+      />
+      <StockCheck params={params} onCheckedChange={updateRoute} />
     </>
   );
 }

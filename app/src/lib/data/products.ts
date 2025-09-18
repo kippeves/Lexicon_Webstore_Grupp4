@@ -1,4 +1,4 @@
-import { Product, ProductsFilter, SidebarFilterValues, ThinProduct, ThinProductList } from "../types";
+import { Product, ProductsFilter, SearchParamsString, SidebarFilterValues, ThinProduct, ThinProductList } from "../types";
 //const baseURI = 'https://dummyjson.com/products';
 const baseURI = 'https://www.kippeves.se/products';
 const thinFields = 'select=title,price,discountPercentage,thumbnail,rating,availabilityStatus';
@@ -12,29 +12,13 @@ export const getProduct = async (id: number): Promise<Product> => {
     }
 }
 
-export const convertProductParamsToFilter = ({
-    params,
-}: {
-    params: { [key: string]: string | undefined };
-}) => {
-    const limit = params.limit ? parseInt(params.limit) : undefined;
-    const page = params.page ? parseInt(params.page) : undefined;
-    const sort = params.sort ? params.sort : undefined;
-    const order = params.order ? params.order : undefined;
-    const query = params.search ? params.search : undefined;
-    const categories = params.categories
-        ? params.categories.split(",")
-        : undefined;
-    const brand = params.brand ? params.brand.split(",") : undefined;
-
+export function convertProductParamsToFilter({ params }: { params: SearchParamsString }): ProductsFilter {
     return {
-        limit: limit,
-        page: page,
-        sort,
-        order,
-        query,
-        categories,
-        brand,
+        ...params,
+        limit: params.limit ? parseInt(params.limit) : undefined,
+        page: params.page ? parseInt(params.page) : undefined,
+        categories: params.categories?.split(','),
+        brand: params.brand?.split(","),
     };
 };
 
@@ -105,14 +89,16 @@ export const getProducts = async ({ limit }: { limit?: number }): Promise<ThinPr
 
 export const getProductsByFilter = async (filter: ProductsFilter): Promise<ThinProductList> => {
     const params = new URLSearchParams();
-    const { limit = 12, page = 1, sort = "id", order = "desc", categories, query, brand } = filter;
+    const { limit = 12, page = 1, sort = "id", order = "desc", categories, search, brand, stock } = filter;
     params.set("limit", limit.toString())
     params.set("skip", `${(page - 1) * limit}`);
     params.set("sort", sort);
     params.set("order", order);
 
-    if (query)
-        params.set("q", query);
+    if (stock)
+        params.set("inStock", '1');
+    if (search)
+        params.set("q", search);
     if (brand)
         params.set("brand", brand.join())
     if (categories && !categories?.includes("all"))
