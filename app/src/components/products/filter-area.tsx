@@ -39,7 +39,7 @@ export default function FilterArea({
       <StockCheck params={params} onCheckedChange={updateRoute} />
       <PriceSlider
           params={params}
-          value={price}
+          values={price}
           onRangeUpdate={updateRoute}
         />
     </>
