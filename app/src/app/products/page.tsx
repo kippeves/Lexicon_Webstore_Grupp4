@@ -1,4 +1,5 @@
 import { ContentWrapper } from "@/components/content-wrapper";
+import Loader from "@/components/loader";
 import ProductsGrid from "@/components/products-grid";
 import Sidebar from "@/components/products/sidebar";
 import {
@@ -30,11 +31,9 @@ export default async function ProductsPage({
   return (
     <ContentWrapper className="flex flex-col gap-4 sm:flex-row" as="article">
       <Sidebar />
-      <section className="grow ">
-        <Suspense>
-          <ProductsGrid title={searchTitle} productsTask={data} />
-        </Suspense>
-      </section>
+      <Suspense fallback={<Loader />}>
+        <ProductsGrid title={searchTitle} productsTask={data} />
+      </Suspense>
     </ContentWrapper>
   );
 }
