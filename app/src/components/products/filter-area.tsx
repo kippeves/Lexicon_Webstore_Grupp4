@@ -16,11 +16,14 @@ export default function FilterArea({
   const params = useSearchParams();
   const { replace } = useRouter();
 
-  const updateRoute = (index: string | string[], value: string | string[] | undefined) => {
+  const updateRoute = (
+    index: string | string[],
+    value: string | string[] | undefined
+  ) => {
     const newParams = new URLSearchParams(params);
     if (Array.isArray(index)) {
       // Set multiple at once
-      const vals = (Array.isArray(value)) ? value : [value];
+      const vals = Array.isArray(value) ? value : [value];
       vals.map((val, ind) => {
         if (val?.length) {
           newParams.set(index[ind], val);
@@ -28,16 +31,16 @@ export default function FilterArea({
           newParams.delete(index[ind]);
         }
       });
+    } else if (value?.length) {
+      if (index !== "page" && newParams.has("page")) newParams.delete("page");
+      if (value?.length) {
+        const exportValue = Array.isArray(value)
+          ? value.join(",").toLowerCase()
+          : value;
+        newParams.set(index, exportValue);
+      } else newParams.delete(index);
+      replace(`${path}?${newParams}`);
     }
-    else if (value?.length) {
-    if (index !== "page" && newParams.has("page")) newParams.delete("page");
-    if (value?.length) {
-      const exportValue = Array.isArray(value)
-        ? value.join(",").toLowerCase()
-        : value;
-      newParams.set(index, exportValue);
-    } else newParams.delete(index);
-    replace(`${path}?${newParams}`);
   };
 
   const { brand, price } = use(task);
@@ -50,11 +53,7 @@ export default function FilterArea({
         onSelectedUpdate={updateRoute}
       />
       <StockCheck params={params} onCheckedChange={updateRoute} />
-      <PriceSlider
-        params={params}
-        values={price}
-        onRangeUpdate={updateRoute}
-      />
+      <PriceSlider params={params} values={price} onRangeUpdate={updateRoute} />
     </>
   );
 }
