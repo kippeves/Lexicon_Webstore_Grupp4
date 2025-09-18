@@ -14,7 +14,7 @@ export default function FilterCard({
     >
       <CardTitle className="font-bold py-2">{title}</CardTitle>
       <CardContent className="p-0">
-        <div className="flex flex-col gap-1 px-2">{children}</div>
+        <div className="flex flex-col gap-1">{children}</div>
       </CardContent>
     </Card>
   );

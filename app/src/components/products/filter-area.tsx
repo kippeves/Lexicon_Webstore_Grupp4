@@ -5,6 +5,7 @@ import { use } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import StockCheck from "./filter/stock-only";
 import BrandSelect from "./filter/brand-select";
+import NameSearch from "./filter/name-search";
 
 export default function FilterArea({
   task,
@@ -30,6 +31,7 @@ export default function FilterArea({
 
   return (
     <>
+      <NameSearch params={params} onValueChange={updateRoute} />
       <BrandSelect
         params={params}
         values={brand}
