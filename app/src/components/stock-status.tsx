@@ -10,6 +10,23 @@ export default function StockStatus({ availabilityStatus }: { availabilityStatus
                     </span>
                     In Stock
                 </span>
+            ) : availabilityStatus === "Low Stock" ? (
+                <span className="inline-flex items-center">
+                    <span className="w-4 h-4 bg-yellow-500 rounded-full flex items-center justify-center mr-1">
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 24 24"
+                            width="24" height="24"
+                            role="img"
+                            aria-labelledby="exclTitle exclDesc"
+                            className="w-3 h-3 text-white"
+                        >
+                            <rect x="11" y="6" width="2" height="8" rx="1" fill="none" stroke="currentColor" />
+                            <circle cx="12" cy="17" r="1.2" fill="none" stroke="currentColor" />
+                        </svg>
+                    </span>
+                    {availabilityStatus}
+                </span>
             ) : (
                 <span className="inline-flex items-center">
                     <span className="w-4 h-4 bg-red-500 rounded-full flex items-center justify-center mr-1">
