@@ -17,6 +17,7 @@ export default function FilterArea({
 
   const updateRoute = (index: string, value: string | string[] | undefined) => {
     const newParams = new URLSearchParams(params);
+    if (index !== "page" && newParams.has("page")) newParams.delete("page");
     if (value?.length) {
       const exportValue = Array.isArray(value)
         ? value.join(",").toLowerCase()
