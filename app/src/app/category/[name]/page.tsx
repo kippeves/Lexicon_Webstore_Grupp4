@@ -35,23 +35,23 @@ export default async function CategoryDetailsPage({
   const products = getProductsByFilter(filter);
 
   return (
-    <ContentWrapper className="flex flex-col">
+    <ContentWrapper className="grow flex flex-col" as="article">
       <h2 className="text-2xl capitalize p-2">Category: {name}</h2>
-      <p className="flex gap-2 p-4 justify-evenly text-justify ">
-        <span className="w-1/3">
+      <p className="flex flex-col sm:flex-row text-justify gap-8 p-4 justify-evenly mb-4">
+        <span className="col w-auto">
           Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quo
           provident, itaque facere soluta nihil corporis ut magni ipsum? Nihil,
           ut repellat ipsum saepe consectetur eius hic minima iste nemo
           voluptatibus!
         </span>
-        <span className="w-1/3">
+        <span className="col w-auto">
           Corporis accusantium nulla, harum, ullam ab optio veritatis ipsa
           recusandae maiores ut illo quas laudantium nemo autem mollitia vel
           quam tempore. Amet tempore ducimus blanditiis provident omnis a?
           Voluptates, ea!
         </span>
       </p>
-      <div className="flex grow  gap-4">
+      <div className="flex flex-col grow sm:flex-row gap-4">
         <Sidebar category={name} />
         <Suspense fallback={<Loader />}>
           <ProductsGrid productsTask={products} />
