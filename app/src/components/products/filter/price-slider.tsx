@@ -1,28 +1,31 @@
 "use client";
 
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Slider } from "@/components/ui/slider";
+import { ReadonlyURLSearchParams } from "next/navigation";
 import { useState } from "react";
-import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
-import { Slider } from "./ui/slider";
 
-interface SliderRangeProps {
-  title?: string;
-  rangeMin: number;
-  rangeMax: number;
-  selectedMin?: number;
-  selectedMax?: number;
-  onSelectionChange?: (selected: string[]) => void;
-  className?: string;
-}
-
-export function SliderRange({
-  title = "Select Range",
-  rangeMin = 0,
-  rangeMax = 1,
-  selectedMin = rangeMin,
-  selectedMax = rangeMax,
-  onSelectionChange,
+export default function PriceSlider({
+  onRangeUpdate,
+  params,
+  values,
   className = "",
-}: SliderRangeProps) {
+  title = ""
+}: {
+  onRangeUpdate: (index: string, value: string[]) => void;
+  params: ReadonlyURLSearchParams;
+  values: number[];
+  className?: string;
+  title?: string;
+}) {
+
+  const paramsPrice = params.get("price")!.split(",") ?? [];
+  const prices = paramsPrice.map(val => Number(val));
+
+  const rangeMin = prices ? Math.min(...prices) : 0;
+  const rangeMax = prices ? Math.max(...prices) : 0;
+  const selectedMin = Number(values[0]);
+  const selectedMax = Number(values[1]);
 
   const [selected, setSelected] = useState([selectedMin, selectedMax]);
 
@@ -31,13 +34,11 @@ export function SliderRange({
   }
 
   const handleSelected = (e: number[]) => {
-    onSelectionChange?.(e.map((val) => val.toString()));
+    onRangeUpdate?.("price", e.map((val) => val.toString()));
   }
 
   return (
-    <Card
-      className={`${className} gap-2 border-0 px-2 rounded-none shadow-none`}
-    >
+    <Card className={`${className} gap-2 border-0 px-2 rounded-none shadow-none`}>
       <CardHeader className="px-0">
         <CardTitle className="text-lg font-semibold">{title}</CardTitle>
       </CardHeader>

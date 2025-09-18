@@ -11,8 +11,8 @@ export interface ProductsFilter {
   stock?: string;
 }
 export interface SidebarFilterValues {
-  brand?: string[];
-  price?: number[];
+  brand: string[];
+  price: number[];
 }
 
 export interface ProductList {
