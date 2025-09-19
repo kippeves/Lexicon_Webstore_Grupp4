@@ -77,7 +77,7 @@ export default function HeaderCartButton() {
                                 <Link
                                     href={`/products/${item.id}`}
                                     className="font-bold hover:underline mb-1">{item.name}</Link>
-                                <div className="flex flex-row items-center border rounded-lg px-4 py-2 bg-white shadow-sm">
+                                <div className="flex flex-row items-center border rounded-lg px-4 py-2 bg-white shadow-sm w-fit">
                                     <button className="cursor-pointer"
                                         onClick={() => {
                                             if (item.quantity > 1) {
