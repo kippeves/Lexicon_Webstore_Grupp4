@@ -52,7 +52,7 @@ export default function NameSearch({
         <Button
           onClick={() => getSearchValue()}
           type="button"
-          className="rounded-s-none rounded-e-sm bg-white border border-y-0 border-e-0 border-s-primary-green hover:text-white text-primary-green hover:bg-primary-green"
+          className="rounded-s-none rounded-e-sm bg-white border border-y-0 border-e-0 border-s-primary-green hover:text-white text-primary-green hover:bg-primary-green cursor-pointer"
         >
           <Search />
         </Button>
