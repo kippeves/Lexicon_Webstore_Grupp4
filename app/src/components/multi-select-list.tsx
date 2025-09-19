@@ -55,7 +55,7 @@ export function MultiSelectList({
             text={item.label}
             checked={selectedItems.includes(item.id)}
             color="#200"
-            className="data-[state=checked]:bg-[var(--primary-green)] data-[state=checked]:border-none border-[var(--primary-green)] rounded-none shadow"
+            className="data-[state=checked]:bg-primary-green data-[state=checked]:border-none border-primary-green rounded-none shadow"
           />
           <span className="text-sm inline-block font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 cursor-pointer py-2">
             {item.label}
