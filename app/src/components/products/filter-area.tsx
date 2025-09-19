@@ -11,9 +11,7 @@ import {
   Accordion,
   AccordionContent,
   AccordionItem,
-  AccordionTrigger,
 } from "../ui/accordion";
-import { AccordionHeader } from "@radix-ui/react-accordion";
 
 export default function FilterArea({
   task,
