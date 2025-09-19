@@ -119,7 +119,7 @@ export default function HeaderCartButton() {
                             {formattedTotalPrice ?? "$0"}
                         </span>
                         <button 
-                            className="mt-4 bg-black text-white px-4 py-2 rounded-md hover:bg-[var(--primary-green)] disabled:opacity-50" 
+                            className="mt-4 text-white px-4 py-2 rounded-md bg-primary-green hover:bg-primary-green/80 disabled:opacity-50" 
                             disabled
                         >
                             Checkout
