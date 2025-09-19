@@ -29,7 +29,7 @@ export default function StockCheck({
           id="inStock"
           name="inStock"
           text="Show items in stock only"
-          className="data-[state=checked]:bg-[var(--primary-green)] data-[state=checked]:border-none border-[var(--primary-green)] rounded-none"
+          className="data-[state=checked]:bg-primary-green data-[state=checked]:border-none border-primary-green rounded-none"
           checked={stock}
         />
         <span className="text-sm inline-block font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 cursor-pointer py-2">
