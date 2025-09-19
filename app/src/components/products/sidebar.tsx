@@ -19,9 +19,11 @@ export default async function Sidebar({ category }: { category?: string }) {
 
   return (
     <aside className="flex flex-col sm:w-60 w-full gap-4">
-      <section className="p-4 rounded bg-gray-200 flex flex-col gap-2">
-        <h2 className="text-xl font-bold uppercase">Categories</h2>
-        <ul className="p-2 flex flex-col gap-1 bg-white rounded">
+      <section className="p-2 flex flex-col gap-2 rounded border-2 border-[var(--primary-green)]">
+        <h2 className="text-xl px-2 py-3 font-bold uppercase border border-x-0 border-t-0 border-b-[var(--primary-green)]">
+          Categories
+        </h2>
+        <ul className="p-2">
           {categories.map((c, index) => (
             <li key={index}>
               <Link
@@ -34,8 +36,10 @@ export default async function Sidebar({ category }: { category?: string }) {
           ))}
         </ul>
       </section>
-      <section className="p-4 rounded bg-gray-200 flex flex-col gap-2">
-        <h2 className="sr-only">Filters</h2>
+      <section className="p-2 rounded border-2 border-[var(--primary-green)]">
+        <h2 className="text-xl px-2 py-3 font-bold uppercase border border-x-0 border-t-0 border-b-[var(--primary-green)]">
+          Filters
+        </h2>
         <Suspense>
           <FilterArea task={filterValues} />
         </Suspense>

@@ -19,8 +19,8 @@ export function convertProductParamsToFilter({ params }: { params: SearchParamsS
         page: params.page ? parseInt(params.page) : undefined,
         categories: params.categories?.split(','),
         brand: params.brand?.split(","),
-        priceMin: params.priceMin ? parseInt(params.priceMin) : undefined,
-        priceMax: params.priceMax ? parseInt(params.priceMax) : undefined
+        priceMin: params.priceMin ? parseFloat(params.priceMin) : undefined,
+        priceMax: params.priceMax ? parseFloat(params.priceMax) : undefined
     };
 };
 

@@ -35,7 +35,7 @@ export default function PriceSlider({
   }
 
   return (
-    <FilterCard title={"Price"}>
+    <FilterCard id="price" title={"Price"}>
       <div>
         <div className="flex flex-row mb-2 justify-between">
           <div>{rangeMin}</div>
