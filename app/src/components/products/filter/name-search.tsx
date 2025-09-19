@@ -14,7 +14,7 @@ export default function NameSearch({
   onValueChange: (index: string, checked: string | undefined) => void;
 }) {
   const previousValue = params?.get("search") ?? "";
-  const [search, setSearch] = useState(previousValue);
+  const [search, setSearch] = useState<string | undefined>(previousValue);
 
   // Debounce callback
   const debounced = useDebouncedCallback(
@@ -28,7 +28,7 @@ export default function NameSearch({
 
   function getSearchValue() {
     const value = ref.current?.value;
-    if (value) setSearch(value);
+    setSearch(value);
   }
 
   const ref = useRef<HTMLInputElement>(null);
