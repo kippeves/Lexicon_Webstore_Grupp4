@@ -23,6 +23,7 @@ export default function PriceSlider({
 
   const selectedMin = params.has("priceMin") ? Number(params.get("priceMin")) : rangeMin;
   const selectedMax = params.has("priceMax") ? Number(params.get("priceMax")) : rangeMax;
+  const preset = (selectedMin > rangeMin || selectedMax < rangeMax);
 
   const [current, setCurrent] = useState([selectedMin, selectedMax]);
 
@@ -35,7 +36,7 @@ export default function PriceSlider({
   }
 
   return (
-    <FilterCard id="price" title={"Price"}>
+    <FilterCard id="price" title={"Price"} open={preset}>
       <div>
         <div className="flex flex-row mb-2 justify-between">
           <div>{rangeMin}</div>

@@ -1,4 +1,5 @@
 import {
+  Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
@@ -8,18 +9,21 @@ import React from "react";
 export default function FilterCard({
   id,
   title,
+  open,
   children,
   className,
   ...props
-}: { title: string } & React.ComponentProps<"div">) {
+}: { title: string, open?: boolean } & React.ComponentProps<"div">) {
   return (
-    <AccordionItem
-      value={id!}
-      className={`${className}`}
-      {...props}
-    >
-      <AccordionTrigger className="px-2 font-bold">{title}</AccordionTrigger>
-      <AccordionContent className="px-1">{children}</AccordionContent>
-    </AccordionItem>
+    <Accordion id={id} type="single" collapsible={true} className="flex flex-col gap-1" defaultValue={(open && id) ? id : ""}>
+      <AccordionItem
+        value={id!}
+        className={`${className}`}
+        {...props}
+      >
+        <AccordionTrigger className="px-2 font-bold">{title}</AccordionTrigger>
+        <AccordionContent className="px-1">{children}</AccordionContent>
+      </AccordionItem>
+    </Accordion>
   );
 }
