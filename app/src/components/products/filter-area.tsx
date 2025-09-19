@@ -58,20 +58,18 @@ export default function FilterArea({
     >
       <AccordionItem value="filter">
         <AccordionContent className="py-0">
-          <Accordion type="multiple" className="flex flex-col gap-1">
-            <NameSearch params={params} onValueChange={updateRoute} />
-            <BrandSelect
-              params={params}
-              values={brand}
-              onSelectedUpdate={updateRoute}
-            />
-            <StockCheck params={params} onCheckedChange={updateRoute} />
-            <PriceSlider
-              params={params}
-              values={price}
-              onRangeUpdate={updateRoute}
-            />
-          </Accordion>
+          <NameSearch params={params} onValueChange={updateRoute} />
+          <BrandSelect
+            params={params}
+            values={brand}
+            onSelectedUpdate={updateRoute}
+          />
+          <StockCheck params={params} onCheckedChange={updateRoute} />
+          <PriceSlider
+            params={params}
+            values={price}
+            onRangeUpdate={updateRoute}
+          />
         </AccordionContent>
       </AccordionItem>
     </Accordion>
