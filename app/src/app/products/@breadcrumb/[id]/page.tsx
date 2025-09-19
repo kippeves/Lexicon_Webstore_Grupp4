@@ -1,12 +1,5 @@
-import {
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbList,
-  BreadcrumbPage,
-  BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb";
-import { getProduct, getThinProduct } from "@/lib/data/products";
-import { Fragment } from "react";
+import { Breadcrumbs } from "@/components/breadcrumbs";
+import { getProduct } from "@/lib/data/products";
 
 export default async function BreadcrumbSlot({
   params,
@@ -19,6 +12,8 @@ export default async function BreadcrumbSlot({
     return <></>;
   }
 
+  const product = await getProduct(idVal);
+
   const links = [
     {
       href: "/",
@@ -27,27 +22,14 @@ export default async function BreadcrumbSlot({
     { href: "/products", title: "Products" },
   ];
 
-  const product = await getThinProduct(idVal);
+  if (product.category) {
+    links.push({
+      href: `/category/${product.category}`,
+      title: product.category.replace(/-/g, " "),
+    });
+  }
 
   return (
-    <div className="bg-white p-4 rounded">
-      <BreadcrumbList>
-        {links.map((link, i) => {
-          return (
-            <Fragment key={i}>
-              <BreadcrumbItem>
-                <BreadcrumbLink href={link.href}>{link.title}</BreadcrumbLink>
-              </BreadcrumbItem>
-              <BreadcrumbSeparator />
-            </Fragment>
-          );
-        })}
-        <BreadcrumbItem>
-          <BreadcrumbPage className="capitalize">
-            {product.title}
-          </BreadcrumbPage>
-        </BreadcrumbItem>
-      </BreadcrumbList>
-    </div>
+    <Breadcrumbs links={links} current={product.title} />
   );
 }

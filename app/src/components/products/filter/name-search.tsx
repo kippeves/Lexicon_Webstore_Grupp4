@@ -14,7 +14,7 @@ export default function NameSearch({
   onValueChange: (index: string, checked: string | undefined) => void;
 }) {
   const previousValue = params?.get("search") ?? "";
-  const [search, setSearch] = useState(previousValue);
+  const [search, setSearch] = useState<string | undefined>(previousValue);
 
   // Debounce callback
   const debounced = useDebouncedCallback(
@@ -28,7 +28,7 @@ export default function NameSearch({
 
   function getSearchValue() {
     const value = ref.current?.value;
-    if (value) setSearch(value);
+    setSearch(value);
   }
 
   const ref = useRef<HTMLInputElement>(null);
@@ -40,19 +40,19 @@ export default function NameSearch({
   }, [onValueChange, previousValue, search]);
 
   return (
-    <FilterCard title="Search">
-      <div className="flex focus-within:outline-3 rounded-md">
+    <FilterCard id="search" title="Search">
+      <div className="flex focus-within:outline-2 border border-[var(--primary-green)] outline-[var(--primary-green)] rounded-sm">
         <Input
           defaultValue={search}
           ref={ref}
           type="search"
           onChange={() => debounced()}
-          className="rounded-s-md rounded-e-none focus-visible:ring-0"
+          className="rounded-s-sm rounded-e-none border-0 focus-visible:ring-0"
         />
         <Button
           onClick={() => getSearchValue()}
           type="button"
-          className="rounded-s-none rounded-e-md bg-gray-400"
+          className="rounded-s-none rounded-e-sm bg-white border border-y-0 border-e-0 border-s-[var(--primary-green)] hover:text-white text-[var(--primary-green)] hover:bg-[var(--primary-green)]"
         >
           <Search />
         </Button>

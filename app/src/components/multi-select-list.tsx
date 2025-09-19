@@ -42,11 +42,11 @@ export function MultiSelectList({
   };
 
   return (
-    <FilterCard className={className} title={title}>
+    <FilterCard id="brand" className={className} title={title}>
       {items.map((item) => (
         <div
           key={item.id}
-          className="flex border-0 items-center space-x-3 rounded-lg hover:bg-accent/50 transition-colors"
+          className="flex px-2 items-center space-x-3 rounded-lg hover:bg-accent/50 transition-colors"
           onClick={(e) => handleItemToggle(item.id, e)}
         >
           <Checkbox
@@ -54,9 +54,8 @@ export function MultiSelectList({
             name={item.id}
             text={item.label}
             checked={selectedItems.includes(item.id)}
-            onCheckedChange={() => handleItemToggle(item.id)}
             color="#200"
-            className="data-[state=checked]:bg-gray-400 data-[state=checked]:border-none border-gray-400 rounded-none"
+            className="data-[state=checked]:bg-[var(--primary-green)] data-[state=checked]:border-none border-[var(--primary-green)] rounded-none shadow"
           />
           <span className="text-sm inline-block font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 cursor-pointer py-2">
             {item.label}
