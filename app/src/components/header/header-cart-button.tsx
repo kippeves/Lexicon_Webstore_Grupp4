@@ -48,7 +48,7 @@ export default function HeaderCartButton() {
                         {(cartCount ?? 0) > 0 ? (
                             <>
                                 <span className="text-sm font-bold">
-                                    {totalPrice}$
+                                    {(totalPrice ??  0 / 100).toFixed(2)}$
                                 </span>
                             </>
                         ) : (
