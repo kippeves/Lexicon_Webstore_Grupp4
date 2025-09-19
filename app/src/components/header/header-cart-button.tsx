@@ -13,7 +13,6 @@ import { useShoppingCart } from "use-shopping-cart"
 import Link from "next/link";
 import { ShoppingBasket } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { useEffect, useState } from "react";
 
 export default function HeaderCartButton() {
     const {
