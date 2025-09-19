@@ -9,7 +9,7 @@ export default function ProductCard({ product }: { product: ThinProduct }) {
     <article className="contents">
       <Link
         href={`/products/${product.id}`}
-        className="grid grid-rows-subgrid gap-1 row-span-5 py-2 px-4 border border-white focus-within:border-gray-300 hover:border-gray-300 rounded-md"
+        className="grid grid-rows-subgrid gap-1 row-span-5 py-2 px-4 border border-white focus-within:border-gray-300 hover:border-gray-300 rounded"
       >
         <div className="flex flex-col items-center gap-3">
           <Image
