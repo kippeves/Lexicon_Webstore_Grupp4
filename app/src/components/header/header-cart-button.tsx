@@ -13,7 +13,7 @@ import { useShoppingCart } from "use-shopping-cart"
 import Link from "next/link";
 import { ShoppingBasket } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { useEffect, useState } from "react";
+
 
 export default function HeaderCartButton() {
     const {
@@ -48,7 +48,7 @@ export default function HeaderCartButton() {
                         {(cartCount ?? 0) > 0 ? (
                             <>
                                 <span className="text-sm font-bold">
-                                    {(totalPrice ??  0 / 100).toFixed(2)}$
+                                    {(formattedTotalPrice ??  0 )}
                                 </span>
                             </>
                         ) : (
@@ -100,7 +100,7 @@ export default function HeaderCartButton() {
                                 </div>
                             </div>
                             <div className="flex flex-col items-end justify-self-end mr-4 flex-grow">
-                                <span className="font-bold">${(item.price / 100) * item.quantity}</span>
+                                <span className="font-bold">{(item.formattedValue )}</span>
                             </div>
                             <button
                                 onClick={() => {
@@ -116,7 +116,7 @@ export default function HeaderCartButton() {
                     <div className="flex flex-col content-center justify-center text-center">
                         <span className="text-sm text-gray-500">Total:</span>
                         <span className="font-bold">
-                            {formattedTotalPrice ?? "$0"}
+                            {formattedTotalPrice ?? "0 US$"}
                         </span>
                         <button 
                             className="mt-4 bg-black text-white px-4 py-2 rounded-md hover:bg-[var(--primary-green)] disabled:opacity-50" 
