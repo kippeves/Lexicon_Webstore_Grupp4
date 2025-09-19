@@ -15,6 +15,7 @@ export default function NameSearch({
 }) {
   const previousValue = params?.get("search") ?? "";
   const [search, setSearch] = useState<string | undefined>(previousValue);
+  const preset = (previousValue?.length > 0);
 
   // Debounce callback
   const debounced = useDebouncedCallback(
@@ -40,7 +41,7 @@ export default function NameSearch({
   }, [onValueChange, previousValue, search]);
 
   return (
-    <FilterCard id="search" title="Search">
+    <FilterCard id="search" title="Search" open={preset}>
       <div className="flex focus-within:outline-2 border border-[var(--primary-green)] outline-[var(--primary-green)] rounded-sm">
         <Input
           defaultValue={search}

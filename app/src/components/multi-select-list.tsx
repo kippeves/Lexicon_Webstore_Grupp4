@@ -25,6 +25,7 @@ export function MultiSelectList({
   className = "",
 }: MultiSelectListProps) {
   const [selectedItems, setSelectedItems] = useState<string[]>(selected);
+  const preset = (selected.length > 0);
 
   const handleItemToggle = async (
     itemId: string,
@@ -42,7 +43,7 @@ export function MultiSelectList({
   };
 
   return (
-    <FilterCard id="brand" className={className} title={title}>
+    <FilterCard id="brand" className={className} title={title} open={preset}>
       {items.map((item) => (
         <div
           key={item.id}

@@ -12,6 +12,7 @@ export default function StockCheck({
 }) {
   const prevValue = params.has("stock");
   const [stock, setStock] = useState(prevValue);
+  const preset = (prevValue);
 
   const flipState = () => setStock((val) => !val);
 
@@ -20,7 +21,7 @@ export default function StockCheck({
   }, [onCheckedChange, prevValue, stock]);
 
   return (
-    <FilterCard id="stock" title="Stock">
+    <FilterCard id="stock" title="Stock" open={preset}>
       <div
         className="flex px-2 border-0 items-center space-x-3 rounded-lg hover:bg-accent/50 transition-colors"
         onClick={() => flipState()}
