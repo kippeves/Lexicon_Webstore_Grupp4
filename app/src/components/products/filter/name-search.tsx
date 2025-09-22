@@ -41,7 +41,7 @@ export default function NameSearch({
   }, [onValueChange, previousValue, search]);
 
   return (
-    <FilterCard id="search" title="Search">
+    <FilterCard id="search" title="Search" open={preset}>
       <div className="flex focus-within:outline-2 border border-primary-green outline-primary-green rounded-sm">
         <Input
           defaultValue={search}
