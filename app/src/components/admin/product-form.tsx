@@ -21,10 +21,12 @@ import BrandSelect from "./brand-select";
 export default function ProductForm({
   submitButtonText,
   initialState,
+  brands,
   serverAction
 }: {
   submitButtonText: string;
   initialState: Partial<Product>;
+  brands: {brand: string[]};
   serverAction: (prevState: FormState, data: FormData) => Promise<FormState>;
 }) {
   const originalState = structuredClone(initialState);
@@ -82,6 +84,7 @@ export default function ProductForm({
             </FormField>
             <FormField name='brand' label='Brand' required>
               <BrandSelect
+                brands={brands.brand}
                 initialValue={product.brand}
                 onChange={e => setValue("brand", e)}
               />

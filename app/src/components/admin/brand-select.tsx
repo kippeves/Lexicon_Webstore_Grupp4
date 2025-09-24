@@ -4,42 +4,31 @@ import { useState } from "react";
 import { Combobox, ComboboxOption } from "../combobox";
 
 export default function BrandSelect({
+  brands,
   initialValue,
-  onChange,
-  className
+  className,
+  onChange
 }: {
+  brands: string[];
   initialValue?: string;
   className?: string;
-  onChange: (newValue: string) => void;
+  onChange?: (newValue: string) => void;
 }) {
 
   const [value, setValue] = useState("");
 
-  const brands: string[] = [
-    "Apple",
-    "Asus",
-    "Huawei",
-    "Lenovo",
-    "Dell",
-    "Amazon",
-    "Beats",
-    "TechGear",
-    "GadgetMaster",
-    "SnapTech",
-    "ProVision",
-    "Oppo",
-    "Realme",
-    "Samsung",
-    "Vivo"
-  ];
-
   function changeBrand(option: ComboboxOption) {
     setValue(option.label);
-    onChange(option.label);
+    if (onChange) {
+      onChange(option.label);
+    }
   }
 
   function addBrand(label: ComboboxOption["label"]) {
     setValue(label);
+    if (onChange) {
+      onChange(label);
+    }
   }
 
   return (
