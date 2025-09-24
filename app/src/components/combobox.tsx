@@ -115,7 +115,7 @@ export function Combobox({
         >
           {selected && selected.length > 0 ? (
             <div className="truncate mr-auto">
-              {options.find((item) => item.value === selected)?.label}
+              {options.find((item) => item.value === selected)?.label ?? `Add: ${selected}`}
             </div>
           ) : (
             <div className="text-slate-600 mr-auto">
