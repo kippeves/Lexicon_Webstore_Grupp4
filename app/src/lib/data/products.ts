@@ -108,3 +108,10 @@ export const getThinProductsByFilter = async (filter: ProductsFilter): Promise<T
     const request = await fetch(decoded);
     return await request.json();
 }
+
+export const getBrandsByProducts = async (): Promise<{brand: string[]}> => {
+    const params = '/distinct?select=brand';
+    const decoded = decodeURIComponent(`${baseURI}${params}`);
+    const request = await fetch(decoded);
+    return await request.json();
+}
