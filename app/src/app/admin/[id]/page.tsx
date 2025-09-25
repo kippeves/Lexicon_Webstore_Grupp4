@@ -11,14 +11,15 @@ export default async function ProductPage(props: Props) {
 
   if (!productId) return { title: "Not Found" };
 
-  const product = getProduct(productId);
-  const brands = getBrandsByProducts();
-  const data = await Promise.all([product, brands]);
+  const [product, brands] = await Promise.all([
+    getProduct(productId),
+    getBrandsByProducts()
+  ]);
   return (
     <ContentWrapper>
       <ProductForm
-        initialState={data[0]}
-        brands={data[1]}
+        initialState={product}
+        brands={brands}
         serverAction={Edit}
         submitButtonText='Update Product'
       />
