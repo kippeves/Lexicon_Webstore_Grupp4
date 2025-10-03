@@ -10,6 +10,7 @@ Detta projekt är en e-handelsbutik byggd med Next.js, TypeScript och Tailwind C
 - [Teknologier](#teknologier)
 - [Skärmdumpar](#skärmdumpar)
 - [Installation](#installation)
+- [Bidrag till projektet](#bidrag-till-projektet)
 - [Projektstruktur](#projektstruktur)
 - [Arbetsflöde](#arbetsflöde)
 - [Sprint Planning](#sprint-planning)
@@ -59,7 +60,7 @@ Produktlista
 1.  **Klona repository:**
 
     ```bash
-    git clone <repository_url>
+    git clone https://github.com/kippeves/Lexicon_Webstore_Grupp4.git
     ```
 
 2.  **Installera beroenden:**
@@ -102,7 +103,29 @@ Arbetet har utförts i form av ett agilt projekt med SCRUM-struktur, varpå en K
 
 Projektet har utförts genom två branches: Dev och Main. Dev har fungerat som utvecklingsmiljö, och där har kod som fortfarande är under arbete landat. I slutet på varje sprint så skjuts det arbete som har genomförts under veckan mot Main-branchen för deployment.
 
-### Dagsstruktur:
+## Bidrag till projektet
+
+### Butik
+
+#### Main - Featured Products
+
+Jag ansvarade för "Featured Items"-komponenten som visas på huvudsidan. Det är en Server-komponent som använder sig utav ProductGrid-komponenten anpassad med kolumnbredder för att tillgodose fem produkter horisontellt stället för fyra. Komponenten visar tio produkter hämtade genom ett API-anrop.
+
+#### Products - Filter/Sidebar:
+Jag byggde upp grundstrukturen för filter-sidebaren och Text, Kategori och I Lager-komponenterna. Varje filter har en callback som använder sig av en gemensam funktion för att uppdatera filtret och skicka användaren till rätt sida. Dessa sökparametrar plockas upp i toppnivåm och används för att bygga en query med sammanslagen filter- och pagineringsdata som sedan hämtas från API:et och väntas in i en underkomponent för minskad renderingstid.
+      
+### Admin/CRUD
+
+#### Tabellvy för produktdata
+Jag ansvarade för visning av produktinformation i tabellvy på den administrativa delen av sidan. Komponenten är i två lager - en serverkomponent som skapar en task för hämtning av alla produkter som sedan skickas ner och väntas in i en klientkomponent för att kunna visa en laddningsindikator på server-nivån. I klientkomponenten så laddas svaret i ett Tanstack Table för hantering av sorterering och paginering.
+
+#### Formulär-komponent för Create och Edit-vy:
+Jag skapade den formulärkomponent som används när man skapar och editerar en produkt. Det är en klientkomponent som tar emot ett objekt av typen Partial<Product> och en Server Action som körs vid en lyckad inskickning av formuläret. Formulärdatan valideras server-side med hjälp av Zod och visar fångade valideringsfel i formuläret med hjälp av useActionState.
+
+### Att arbeta vidare på:
+Idéer för fortsatt arbete skulle nog vara att implementera någon form av klient-cache bibliotek för att filtrera produkterna när det finns möjlighet (t.ex. vid namnsökning för produkter som redan har hämtats i en lista) istället för fullständigt server-side som det är nu. Det skulle göra filtreringen mycket mer responsiv. Det skulle även vara intressant att implementera någon form av "Du har tidigare tittat på produkter som dessa"-funktionalitet genom att spara visningshistorik om användaren är inloggad.
+
+## Dagsstruktur
 
 **Morgonmöte**
 
@@ -120,7 +143,6 @@ Under det mötet så går vi igenom de pull requests som har samlats under dagen
 För att en pull request ska kunna bli merge:ad till utvecklingsbranchen så krävs godkännanden av två övriga gruppmedlemmar, varpå Merge Master kan utföra det.
 
 När alla PR har slutförts så sker samma process som under morgonmötet, alla deltagare går igenom de krav som finns på Kanban-brädan och nya krav analyseras.
-
 
 ## Sprint Planning
 
