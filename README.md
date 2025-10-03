@@ -123,7 +123,7 @@ Jag ansvarade för visning av produktinformation i tabellvy på den administrati
 Jag skapade den formulärkomponent som används när man skapar och editerar en produkt. Det är en klientkomponent som tar emot ett objekt av typen Partial<Product> och en Server Action som körs vid en lyckad inskickning av formuläret. Formulärdatan valideras server-side med hjälp av Zod och visar fångade valideringsfel i formuläret med hjälp av useActionState.
 
 ### Att arbeta vidare på:
-Idéer för fortsatt arbete skulle nog vara att implementera någon form av klient-cache bibliotek för att filtrera produkterna när det finns möjlighet (t.ex. vid namnsökning för produkter som redan har hämtats i en lista) istället för fullständigt server-side som det är nu. Det skulle göra filtreringen mycket mer responsiv. Det skulle även vara intressant att implementera någon form av "Du har tidigare tittat på produkter som dessa"-funktinalitet genom att spara visningshistorik om användaren är inloggad.
+Idéer för fortsatt arbete skulle nog vara att implementera någon form av klient-cache bibliotek för att filtrera produkterna när det finns möjlighet (t.ex. vid namnsökning för produkter som redan har hämtats i en lista) istället för fullständigt server-side som det är nu. Det skulle göra filtreringen mycket mer responsiv. Det skulle även vara intressant att implementera någon form av "Du har tidigare tittat på produkter som dessa"-funktionalitet genom att spara visningshistorik om användaren är inloggad.
 
 ## Dagsstruktur
 
